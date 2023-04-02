@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -122,9 +121,6 @@ export default function Home() {
       <h1 className="text-3xl font-bold underline text-red-500">
         Hello world!
       </h1>
-      <div>
-        <Button variant="contained">Hello World</Button>
-      </div>
     </>
   )
 }
