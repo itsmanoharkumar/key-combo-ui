@@ -1,140 +1,34 @@
+import KeyboardAltIcon from '@mui/icons-material/KeyboardAlt';
 import Link from 'next/link';
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import KeyboardAltIcon from '@mui/icons-material/KeyboardAlt';
 
 const pages = ['Products'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-  
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-  
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-  
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <div className={'flex items-center'}>
+      <Link href={'/'}>
+        <div className={'flex p-2 items-center ml-4'}>
           <KeyboardAltIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: {xs: 'none', md: 'flex'},
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+          <div
+            className={'font-bold font-mono text-xl text-gray-700'}
           >
             KEY-COMBO
-          </Typography>
-          
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon/>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: {xs: 'block', md: 'none'},
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page}
-                          onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: {xs: 'flex', md: 'none'},
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-            <Button autoCapitalize={'off'}
-              sx={{my: 2, mx: 4, color: 'white', display: 'block', textTransform: 'none'}}
-            >
-              <Link href={'products'}>Application/Products</Link>
-            </Button>
-          </Box>
-          
-          <Box sx={{flexGrow: 0}}>
-            <Button
-              sx={{my: 2, mx: 4, color: 'white', display: 'block'}}
-            >
-              <Link href={'signup'}>Sign Up</Link>
-            </Button>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </div>
+        </div>
+      </Link>
+      
+      <div className={'ml-5'}>
+        <Link href={'applications'}>Applications</Link>
+      </div>
+      <div className={'flex-grow'}>
+        &nbsp;
+      </div>
+      <div className={'mr-4 font-semibold'}>
+        <Link href={'/register'}>Sign Up</Link>
+      </div>
+    </div>
   );
 }
 
