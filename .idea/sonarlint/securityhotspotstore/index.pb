@@ -11,26 +11,12 @@ E
 store/counterSlice.ts,c\e\ce45ca3c52cc0754cd176c266dda70ce0c1cb359
 >
 store/store.ts,3\8\3892a922dbd2172744e9ad5620dc5c534534fec4
-?
-pages/login.tsx,b\9\b93fcc063d249bdf6f69fc21d2c1d92c294b3fa8
-B
-store/authSlice.ts,b\2\b27c963be292b1932a7d1e41d2ddee83072011fd
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 B
 pages/api/hello.ts,1\a\1a90d01be90e8d5774c682e9d222e618e3273e9b
->
-pages/home.tsx,a\7\a77c86462aaa8d8853c35b47bda7684d8b33a26e
-?
-pages/index.tsx,b\3\b3357635c26d1b52053382ce7e8a8640d31fedc8
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
-F
-pages/applications.tsx,a\0\a03739a324f457befed7596d82d599abf987190a
-@
-helpers/index.ts,4\9\49d8d74b0a59b29b9740f17be7bb2bb8e76e048d
-I
-components/SignUpCard.tsx,a\f\afc87cd15b867718e9a1f7d6b8b779e209fc242c
