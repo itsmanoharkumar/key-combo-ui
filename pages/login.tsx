@@ -1,36 +1,40 @@
 import Button from "@/components/atoms/Button";
 import errorIcon from "@/images/error.svg";
-import { register } from "@/service/authentication";
+import { login } from "@/service/authentication";
+import { selectAuthState } from "@/store/authSlice";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useSelector } from "react-redux";
 
-export default function Signup() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+export default function Login() {
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [, setCookie] = useCookies(["authToken"]);
+  const navigate = useRouter();
+  const authState = useSelector(selectAuthState);
+  if (authState) {
+    navigate.replace("/");
+  }
 
   useEffect(() => {
     setErrorMessage("");
-    if (email && password && confirmPassword) {
+    if (usernameOrEmail && password) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  }, [email, password, confirmPassword]);
+  }, [usernameOrEmail, password]);
 
-  async function handleSignup() {
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      return;
-    }
+  async function handleLogin() {
     try {
-      const response = await register({ username, email, password });
-      console.log(response);
-    } catch (err: any) {
-      setErrorMessage(err.message);
+      const response = await login({ identifier: usernameOrEmail, password });
+      setCookie("authToken", response.jwt, { path: "/" });
+    } catch (e: any) {
+      setErrorMessage(e.message);
     }
   }
 
@@ -41,25 +45,16 @@ export default function Signup() {
           <div
             className={"p-4 font-medium text-[18px] border-b-[1px] border-gray"}
           >
-            Signup
+            Login
           </div>
           <div className={"px-4 mt-2"}>
             <input
               className={"border-[1px] rounded w-full border-gray p-2 my-2"}
               type="text"
-              value={username}
-              placeholder={"Enter your username"}
+              value={usernameOrEmail}
+              placeholder={"Enter your username/email"}
               onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="text"
-              value={email}
-              placeholder={"Enter your email"}
-              onChange={(e) => {
-                setEmail(e.target.value);
+                setUsernameOrEmail(e.target.value);
               }}
             />
 
@@ -70,15 +65,6 @@ export default function Signup() {
               placeholder={"Enter your password"}
               onChange={(e) => {
                 setPassword(e.target.value);
-              }}
-            />
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="password"
-              value={confirmPassword}
-              placeholder={"Confirm your password"}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
               }}
             />
           </div>
@@ -102,9 +88,9 @@ export default function Signup() {
             </div>
             <Button
               isDisabled={isButtonDisabled}
-              text="Signup"
+              text="Login"
               onClick={() => {
-                handleSignup();
+                handleLogin();
               }}
             />
           </div>

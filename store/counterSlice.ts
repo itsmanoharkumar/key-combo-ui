@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, Draft, StateFromReducersMapObject } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper';
 
 export interface CounterState {
   value: number
@@ -27,9 +28,18 @@ export const counterSlice = createSlice({
       state.value += action.payload
     },
   },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      console.log('HYDRATE', state, action.payload);
+      return {
+        ...state,
+        ...action.payload.counter,
+      };
+    },
+  },
 })
 
 // Action creators are generated for each case reducer function
 export const {increment, decrement, incrementByAmount} = counterSlice.actions
-
+export const selectCount = (state: any) => state.counter.value
 export default counterSlice.reducer

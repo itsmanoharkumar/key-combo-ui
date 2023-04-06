@@ -1,15 +1,22 @@
 
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
-A
-postcss.config.js,3\f\3f70684581fd16ab3be77ca959e0138ef3ee8bfb
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+B
+styles/globals.css,8\c\8c258232cbcd5d83991c524a9e86c8d3f984fc57
+w
+G.idea/sonarlint/issuestore/4/9/496a238a6afa168dbaf6efd37bb459331589579c,6\e\6e9644ddf83ab52f39902ecdbfdf4118285ac40c
+
+Q.idea/sonarlint/securityhotspotstore/4/9/496a238a6afa168dbaf6efd37bb459331589579c,b\0\b0bb0a26d88d16d2e82502fe47e034e248a527a2
+E
+store/counterSlice.ts,c\e\ce45ca3c52cc0754cd176c266dda70ce0c1cb359
+>
+store/store.ts,3\8\3892a922dbd2172744e9ad5620dc5c534534fec4
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 B
 pages/api/hello.ts,1\a\1a90d01be90e8d5774c682e9d222e618e3273e9b
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
-A
-package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
-B
-tailwind.config.js,0\9\0918cbb76f2c44f223706cec9d31a32cd1177ce4
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
