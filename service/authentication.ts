@@ -1,5 +1,5 @@
+import { API_ROUTES } from "@/helpers/constants";
 import { handleNetworkError } from "@/helpers/helper";
-import { URLS } from "@/service/constants";
 import axios, { AxiosResponse } from "axios";
 
 interface RegisterRequestPayload {
@@ -15,7 +15,10 @@ interface LoginRequestPayload {
 
 export async function register(payload: RegisterRequestPayload) {
   try {
-    const response: AxiosResponse = await axios.post(URLS.register, payload);
+    const response: AxiosResponse = await axios.post(
+      API_ROUTES.register,
+      payload
+    );
     return response.data;
   } catch (e: any) {
     throw handleNetworkError(e);
@@ -24,7 +27,7 @@ export async function register(payload: RegisterRequestPayload) {
 
 export async function login(payload: LoginRequestPayload) {
   try {
-    const response: AxiosResponse = await axios.post(URLS.login, payload);
+    const response: AxiosResponse = await axios.post(API_ROUTES.login, payload);
     return response.data;
   } catch (e: any) {
     throw handleNetworkError(e);
@@ -33,7 +36,7 @@ export async function login(payload: LoginRequestPayload) {
 
 export async function getCurrentUser() {
   try {
-    const response: AxiosResponse = await axios.get(URLS.me);
+    const response: AxiosResponse = await axios.get(API_ROUTES.me);
     return response.data;
   } catch (e: any) {
     throw handleNetworkError(e);

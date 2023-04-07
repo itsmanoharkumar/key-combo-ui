@@ -27,11 +27,7 @@ export default function App({ Component, ...rest }: AppProps) {
 
   return (
     <>
-      <SWRConfig
-        value={{
-          fetcher,
-        }}
-      >
+      <SWRConfig>
         <CookiesProvider>
           <Provider store={store}>
             <UserAuthContext>

@@ -5,7 +5,6 @@ export function parseCookies(req: any) {
 }
 
 export function handleNetworkError(networkError: any) {
-  debugger;
   const networkErrorResponse = networkError.response;
   const errorData = networkErrorResponse?.data;
   const errorStatus = networkErrorResponse?.status;
