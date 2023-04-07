@@ -1,17 +1,37 @@
+import Select from "@/components/atoms/Select";
 import logo from "@/images/logo.svg";
+import { selectOperatingSystem, setOperatingSystem } from "@/store/appSlice";
 import { selectAuthState } from "@/store/authSlice";
+import { OPERATING_SYSTEM } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function ResponsiveAppBar() {
   const [, , removeCookie] = useCookies(["authToken", "Authorization"]);
   const authState = useSelector(selectAuthState);
+  const operatingSystem = useSelector(selectOperatingSystem);
   const navigation = useRouter();
+  const [os, setOs] = useState(operatingSystem);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setOperatingSystem(os));
+  }, [os]);
 
+  const operatingSystemList = [
+    {
+      label: "Mac",
+      value: OPERATING_SYSTEM.MAC,
+    },
+    {
+      label: "Windows",
+      value: OPERATING_SYSTEM.WINDOWS,
+    },
+  ];
   const showLoginButton = !authState && navigation.pathname !== "/login";
   const showSignupButton = !authState && navigation.pathname !== "/signup";
 
@@ -32,9 +52,19 @@ function ResponsiveAppBar() {
       </Link>
 
       <div className={"ml-5"}>
-        <Link href={"applications"}>Applications</Link>
+        <Link href={"/products"}>Applications</Link>
       </div>
       <div className={"flex-grow"}>&nbsp;</div>
+      <div className={"mr-4 font-semibold"}>
+        <Select
+          onChange={(value) => {
+            setOs(value);
+          }}
+          value={os}
+          label={"Operating System"}
+          optionList={operatingSystemList}
+        />
+      </div>
       {showLoginButton && (
         <div className={"mr-4 font-semibold"}>
           <Link href={"/login"}>Login</Link>
