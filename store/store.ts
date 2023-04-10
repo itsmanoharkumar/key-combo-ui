@@ -1,5 +1,6 @@
 import { appSlice } from "@/store/appSlice";
 import { authSlice } from "@/store/authSlice";
+import { productSlice } from "@/store/productSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { counterSlice } from "./counterSlice";
@@ -10,6 +11,7 @@ const makeStore = () =>
       [appSlice.name]: appSlice.reducer,
       [authSlice.name]: authSlice.reducer,
       [counterSlice.name]: counterSlice.reducer,
+      [productSlice.name]: productSlice.reducer,
     },
     devTools: true,
   });

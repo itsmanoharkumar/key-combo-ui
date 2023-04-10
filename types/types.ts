@@ -10,7 +10,7 @@ export type ShortcutAttributes = {
 } & Timestamp;
 
 export type Shortcut = {
-  id: string;
+  id: number;
   attributes: ShortcutAttributes;
 };
 
@@ -22,7 +22,7 @@ export type ShortcutCategoryAttributes = {
 } & Timestamp;
 
 export type ShortcutCategory = {
-  id: string;
+  id: number;
   attributes: ShortcutCategoryAttributes;
 };
 
@@ -30,3 +30,12 @@ export const enum OPERATING_SYSTEM {
   MAC = "mac",
   WINDOWS = "windows",
 }
+
+export type ProductAttributes = {
+  name: string;
+} & Timestamp;
+
+export type Product = {
+  id: number;
+  attributes: ProductAttributes;
+};
