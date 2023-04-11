@@ -1,34 +1,31 @@
 import ProductList from "@/components/molecules/ProductList";
 import { API_ROUTES } from "@/helpers/constants";
+import heroImage from "@/images/heroImage.jpg";
 import fetcher from "@/service/service";
 import {
   selectSelectedProductId,
   setSelectedProductId,
 } from "@/store/productSlice";
+import { Product } from "@/types/types";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import useSWR from "swr";
 
-export async function getServerSideProps(context: any) {
-  console.log("getServerSideProps", context);
+export async function getStaticProps() {
+  console.log(process.env.NEXT_PUBLIC_SERVER_BASE_URL);
+  const { data } = await fetcher(API_ROUTES.products);
   return {
-    props: {}, // will be passed to the page component as props
+    props: {
+      productList: data,
+    }, // will be passed to the page component as props
   };
 }
 
-export default function Home() {
+export default function Home({ productList }: { productList: Product[] }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const selectedProductId = useSelector(selectSelectedProductId);
-  const { data, error, isLoading } = useSWR(API_ROUTES.products, fetcher);
-  const productList = data?.data;
-  if (error) {
-    return <div>Some error occurred</div>;
-  }
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   function handleProductItemClick(id: number) {
     dispatch(setSelectedProductId(id));
@@ -53,7 +50,11 @@ export default function Home() {
             onClick={handleProductItemClick}
           />
         </div>
-        <div></div>
+        <div className={"w-full h-full overflow-hidden"}>
+          <div className={"flex justify-center"}>
+            <Image src={heroImage} width={600} alt={"Lookup"} />
+          </div>
+        </div>
       </div>
     </>
   );

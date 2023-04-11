@@ -12,15 +12,6 @@ import { SWRConfig } from "swr";
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 axios.defaults.withCredentials = true;
 
-const fetcher = async (url: string) => {
-  try {
-    const res = await axios.get(url);
-    return res.data;
-  } catch (err: any) {
-    throw err.response.data;
-  }
-};
-
 export default function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps } = props;
