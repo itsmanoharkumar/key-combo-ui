@@ -20,12 +20,6 @@ export default function ProductPage() {
   const { data } = useSWR(API_ROUTES.products, fetcher);
   const operatingSystem = useSelector(selectOperatingSystem);
   const productList = data?.data;
-  // if (error) {
-  //   return <div>Some error occurred</div>;
-  // }
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   function handleProductItemClick(id: number) {
     dispatch(setSelectedProductId(id));
@@ -38,11 +32,7 @@ export default function ProductPage() {
     error: productError,
     isLoading,
   } = useSWR(id ? `${API_ROUTES.products}/${id}` : null, fetcher);
-  const {
-    data: shortcutCategoriesData,
-    error: shortcutCategoriesError,
-    isLoading: shortcutCategoriesLoading,
-  } = useSWR(
+  const { data: shortcutCategoriesData } = useSWR(
     id ? [`${API_ROUTES.shortcutCategories}`, id, operatingSystem] : null,
     ([url, id, operatingSystem]) => {
       return fetchShortcutCategoriesForProduct(
@@ -71,7 +61,9 @@ export default function ProductPage() {
       </Head>
       <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
         <div
-          className={"h-full max-w-[375px] h-[2000px] w-full overflow-y-scroll"}
+          className={
+            "h-full max-w-[300px] h-full w-full overflow-y-auto border-r-[1px]"
+          }
         >
           <ProductList
             selectedProductId={selectedProductId}
@@ -80,7 +72,11 @@ export default function ProductPage() {
           />
         </div>
         <div>
-          <div className={"flex flex-col p-2 m-2"}>
+          <div
+            className={
+              "flex flex-col p-2 m-2 h-[calc(100vh_-_58px)] overflow-y-auto"
+            }
+          >
             <h1 className={"text-[36px] font-bold ml-2"}>{productName}</h1>
             {isShortcutCategoryListEmpty && (
               <div className={"mt-2"}>Coming soon</div>
