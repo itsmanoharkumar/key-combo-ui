@@ -7,13 +7,15 @@ export default function ShortcutCategoryCard({
   id,
   attributes,
 }: ShortcutCategoryCardProps) {
+  console.log("ShortcutCategoryCard", id);
   const { name, shortcuts } = attributes;
   const shortcutsList = shortcuts?.data;
   const isShortcutListEmpty = shortcutsList?.length === 0;
   return (
     <div
       className={
-        "p-2 border-[1px] border-gray-400 rounded m-2 w-[450px] overflow-hidden flex flex-col items-center" +
+        "p-2 border-[1px] border-gray-400 rounded m-2 w-[48%] overflow-hidden flex flex-col" +
+        " items-center" +
         "justify-between "
       }
     >
