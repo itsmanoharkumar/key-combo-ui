@@ -1,12 +1,10 @@
 import { handleNetworkError } from "@/helpers/helper";
-import { OPERATING_SYSTEM } from "@/types/types";
 import axios from "axios";
 import * as qs from "qs";
 
 export async function fetchShortcutCategoriesForProduct(
   url: string,
-  productId: string,
-  operatingSystem: OPERATING_SYSTEM
+  productId: string
 ) {
   const query = qs.stringify({
     filters: {
@@ -16,15 +14,7 @@ export async function fetchShortcutCategoriesForProduct(
         },
       },
     },
-    populate: {
-      shortcuts: {
-        filters: {
-          operatingSystem: {
-            $eq: operatingSystem,
-          },
-        },
-      },
-    },
+    populate: "shortcuts",
   });
   const computedUrl = `${url}?${query}`;
   if (!productId) {

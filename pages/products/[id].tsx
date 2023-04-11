@@ -1,56 +1,73 @@
 import ProductList from "@/components/molecules/ProductList";
 import ShortcutCategoryCard from "@/components/ShortcutCateroryCard";
 import { API_ROUTES } from "@/helpers/constants";
+
+import comingSoon from "@/images/coming-soon.jpg";
 import fetcher from "@/service/service";
 import { fetchShortcutCategoriesForProduct } from "@/service/shortcutCategories";
-import { selectOperatingSystem } from "@/store/appSlice";
 import {
   selectSelectedProductId,
   setSelectedProductId,
 } from "@/store/productSlice";
+import { Product, ShortcutCategory } from "@/types/types";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import useSWR from "swr";
 
-export default function ProductPage() {
+export async function getStaticProps({ params }: any) {
+  const { data: productList } = await fetcher(API_ROUTES.products);
+  const { data: productData } = await fetcher(
+    `${API_ROUTES.products}/${params?.id}`
+  );
+  const { data: shortcutCategoriesData } =
+    await fetchShortcutCategoriesForProduct(
+      API_ROUTES.shortcutCategories,
+      params?.id
+    );
+  return {
+    props: {
+      productList,
+      productData,
+      shortcutCategoriesData,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const { data } = await fetcher(API_ROUTES.products);
+  const paths = data.map((item: Product) => ({
+    params: { id: String(item.id) },
+  }));
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  };
+}
+
+interface OwnProps {
+  productList: Product[];
+  productData: Product;
+  shortcutCategoriesData: ShortcutCategory[];
+}
+
+export default function ProductPage({
+  productList,
+  productData,
+  shortcutCategoriesData,
+}: OwnProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const selectedProductId = useSelector(selectSelectedProductId);
-  const { data } = useSWR(API_ROUTES.products, fetcher);
-  const operatingSystem = useSelector(selectOperatingSystem);
-  const productList = data?.data;
 
   function handleProductItemClick(id: number) {
     dispatch(setSelectedProductId(id));
     router.replace(`/products/${id}`);
   }
 
-  const { id } = router.query;
-  const {
-    data: productData,
-    error: productError,
-    isLoading,
-  } = useSWR(id ? `${API_ROUTES.products}/${id}` : null, fetcher);
-  const { data: shortcutCategoriesData } = useSWR(
-    id ? [`${API_ROUTES.shortcutCategories}`, id, operatingSystem] : null,
-    ([url, id, operatingSystem]) => {
-      return fetchShortcutCategoriesForProduct(
-        url,
-        id as string,
-        operatingSystem
-      );
-    }
-  );
-  if (isLoading) {
-    return <div>Loading ....</div>;
-  }
-  if (productError) {
-    return <div>Some error occurred</div>;
-  }
-  const productName = productData?.data?.attributes?.name;
-  const shortcutCategoryList = shortcutCategoriesData?.data;
-  const isShortcutCategoryListEmpty = shortcutCategoryList?.length === 0;
+  const productName = productData?.attributes?.name;
+  const shortcutCategoryList = shortcutCategoriesData;
+  const isShortcutCategoryListEmpty = shortcutCategoriesData?.length === 0;
   return (
     <>
       <Head>
@@ -71,15 +88,22 @@ export default function ProductPage() {
             onClick={handleProductItemClick}
           />
         </div>
-        <div>
+        <div className={"w-full"}>
           <div
             className={
-              "flex flex-col p-2 m-2 h-[calc(100vh_-_58px)] overflow-y-auto"
+              "flex flex-col p-2 m-2 h-[calc(100vh_-_58px)] overflow-y-auto w-full"
             }
           >
             <h1 className={"text-[36px] font-bold ml-2"}>{productName}</h1>
             {isShortcutCategoryListEmpty && (
-              <div className={"mt-2"}>Coming soon</div>
+              <div className={"mt-2 flex justify-center w-full"}>
+                <Image
+                  className={"w-[500px]"}
+                  src={comingSoon}
+                  width={300}
+                  alt={"Coming Soon!!!"}
+                />
+              </div>
             )}
             <div className={"mt-2] flex flex-wrap"}>
               {shortcutCategoryList?.map((item: any) => {

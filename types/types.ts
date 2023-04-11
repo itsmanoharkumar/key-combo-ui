@@ -6,7 +6,8 @@ export type Timestamp = {
 
 export type ShortcutAttributes = {
   shortText: string;
-  keyCombo: string;
+  windowsKeyCombo: string;
+  macKeyCombo: string;
 } & Timestamp;
 
 export type Shortcut = {
