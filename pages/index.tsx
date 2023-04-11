@@ -6,10 +6,19 @@ import {
   setSelectedProductId,
 } from "@/store/productSlice";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import useSWR from "swr";
 
+export async function getServerSideProps(context: any) {
+  console.log("getServerSideProps", context);
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+
 export default function Home() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const selectedProductId = useSelector(selectSelectedProductId);
   const { data, error, isLoading } = useSWR(API_ROUTES.products, fetcher);
@@ -23,6 +32,7 @@ export default function Home() {
 
   function handleProductItemClick(id: number) {
     dispatch(setSelectedProductId(id));
+    router.replace(`products/${id}`);
   }
 
   return (

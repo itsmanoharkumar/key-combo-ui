@@ -52,7 +52,7 @@ function ResponsiveAppBar() {
       </Link>
 
       <div className={"ml-5"}>
-        <Link href={"/products"}>Applications</Link>
+        {/*<Link href={"/products"}>Applications</Link>*/}
       </div>
       <div className={"flex-grow"}>&nbsp;</div>
       <div className={"mr-4 font-semibold"}>
@@ -65,21 +65,21 @@ function ResponsiveAppBar() {
           optionList={operatingSystemList}
         />
       </div>
-      {showLoginButton && (
-        <div className={"mr-4 font-semibold"}>
-          <Link href={"/login"}>Login</Link>
-        </div>
-      )}
-      {showSignupButton && (
-        <div className={"mr-4 font-semibold"}>
-          <Link href={"/signup"}>Sign Up</Link>
-        </div>
-      )}
-      {authState && (
-        <div className={"mr-4 font-semibold cursor-pointer"}>
-          <div onClick={handleLogout}>Logout</div>
-        </div>
-      )}
+      {/*{showLoginButton && (*/}
+      {/*  <div className={"mr-4 font-semibold"}>*/}
+      {/*    <Link href={"/login"}>Login</Link>*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      {/*{showSignupButton && (*/}
+      {/*  <div className={"mr-4 font-semibold"}>*/}
+      {/*    <Link href={"/signup"}>Sign Up</Link>*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      {/*{authState && (*/}
+      {/*  <div className={"mr-4 font-semibold cursor-pointer"}>*/}
+      {/*    <div onClick={handleLogout}>Logout</div>*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </div>
   );
 }
