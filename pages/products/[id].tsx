@@ -79,7 +79,7 @@ export default function ProductPage({
       <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
         <div
           className={
-            "h-full max-w-[300px] h-full w-full overflow-y-auto border-r-[1px]"
+            "h-full max-w-[200px] h-full w-full overflow-y-auto border-r-[1px]"
           }
         >
           <ProductList

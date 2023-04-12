@@ -13,7 +13,7 @@ export default function ProductList({
   selectedProductId,
 }: ProductListProps) {
   return (
-    <div className="h-full overflow-y-auto px-2 select-none">
+    <div className="h-full w-full overflow-y-auto px-2 select-none">
       {products?.map((product) => {
         return (
           <ProductListItem

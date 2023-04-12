@@ -42,7 +42,7 @@ export default function Home({ productList }: { productList: Product[] }) {
       </Head>
       <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
         <div
-          className={"h-full max-w-[375px] h-[2000px] w-full overflow-y-scroll"}
+          className={"h-full max-w-[200px] h-[2000px] w-full overflow-y-scroll"}
         >
           <ProductList
             selectedProductId={selectedProductId}
