@@ -5,7 +5,6 @@ import "@/styles/globals.css";
 import axios from "axios";
 import type { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
-import { CookieConsent } from "react-cookie-consent";
 import { Provider } from "react-redux";
 import { SWRConfig } from "swr";
 
@@ -24,9 +23,9 @@ export default function App({ Component, ...rest }: AppProps) {
             <UserAuthContext>
               <Layout>
                 <Component {...pageProps} />
-                <CookieConsent>
-                  This website uses cookies to enhance the user experience.
-                </CookieConsent>
+                {/*<CookieConsent>*/}
+                {/*  This website uses cookies to enhance the user experience.*/}
+                {/*</CookieConsent>*/}
               </Layout>
             </UserAuthContext>
           </Provider>

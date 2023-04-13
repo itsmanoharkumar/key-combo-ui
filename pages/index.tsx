@@ -1,6 +1,5 @@
-import ProductList from "@/components/molecules/ProductList";
+import ProductCardList from "@/components/molecules/ProductCardList";
 import { API_ROUTES } from "@/helpers/constants";
-import heroImage from "@/images/heroImage.jpg";
 import fetcher from "@/service/service";
 import {
   selectSelectedProductId,
@@ -8,7 +7,6 @@ import {
 } from "@/store/productSlice";
 import { Product } from "@/types/types";
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -41,19 +39,12 @@ export default function Home({ productList }: { productList: Product[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
-        <div
-          className={"h-full max-w-[200px] h-[2000px] w-full overflow-y-scroll"}
-        >
-          <ProductList
+        <div className={"h-full h-[2000px] w-full overflow-y-scroll"}>
+          <ProductCardList
             selectedProductId={selectedProductId}
             products={productList}
             onClick={handleProductItemClick}
           />
-        </div>
-        <div className={"w-full h-full overflow-hidden"}>
-          <div className={"flex justify-center"}>
-            <Image src={heroImage} width={600} alt={"Lookup"} />
-          </div>
         </div>
       </div>
     </>
