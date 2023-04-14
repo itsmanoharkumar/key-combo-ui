@@ -78,7 +78,8 @@ export default function ProductPage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={"flex justify-start h-[calc(100vh_-_150px)] overflow-auto"}>
+      <div className={"flex justify-start sm:h-[calc(100vh_-_58px)] h-[calc(100vh_-_150px)] overflow-y-auto" +
+        " overflow-hidden"}>
         <div
           className={
             "max-w-[200px] w-full overflow-y-auto border-r-[1px] hidden md:block"
@@ -105,7 +106,7 @@ export default function ProductPage({
                   alt={"Coming Soon!!!"}
                 />
               </Link>
-              <h1 className={"text-2xl font-bold ml-2"}>{productName}</h1>
+              <h1 className={"text-3xl font-bold ml-2"}>{productName}</h1>
             </div>
             {isShortcutCategoryListEmpty && (
               <div className={"mt-2 flex justify-center w-full"}>

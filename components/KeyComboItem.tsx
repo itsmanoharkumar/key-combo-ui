@@ -12,10 +12,13 @@ export default function KeyComboItem({ attributes , operatingSystem }: KeyComboI
     <div
       className={"w-full p-1 border-[1px] rounded mb-1 border-gray-100 bg-gray-100"}
     >
-      <div className={"m-1 p-1"}>
-        <KeyCombo keyCombo={keyCombo} operatingSystem={operatingSystem} />
+      
+      <div className={"m-1 p-1 text-lg"}>{shortText}</div>
+      <div className={"m-1 p-1 flex justify-end w-full"}>
+        <KeyCombo keyCombo={keyCombo}
+                  operatingSystem={operatingSystem}
+        />
       </div>
-      <div className={"m-1 p-1"}>{shortText}</div>
     </div>
   );
 }

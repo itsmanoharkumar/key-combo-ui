@@ -20,7 +20,7 @@ export default function ShortcutCategoryCard({
     <div className={`m-2 w-full`}>
       <div
         className={
-          "text-start w-full bg-gray-200 mb-2 rounded p-2 font-semibold"
+          "text-start text-2xl w-full bg-gray-200 mb-2 rounded p-2 font-semibold"
         }
       >
         {name}

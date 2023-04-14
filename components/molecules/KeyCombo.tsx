@@ -9,7 +9,7 @@ interface OwnProps {
 export default function KeyCombo({ keyCombo, operatingSystem }: OwnProps) {
   const keyComboArray = keyCombo?.split(" ");
   return (
-    <div className={`w-full font-mono font-semibold flex items-center`}>
+    <div className={`font-mono font-semibold flex items-center`}>
       {keyComboArray?.map((key) => {
         return (
           <div key={key} className={'px-[4px]'}>
