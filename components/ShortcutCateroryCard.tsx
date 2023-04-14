@@ -1,5 +1,7 @@
 import KeyComboItem from "@/components/KeyComboItem";
+import { selectOperatingSystem } from "@/store/appSlice";
 import { Shortcut, ShortcutCategory } from "@/types/types";
+import { useSelector } from "react-redux";
 
 interface ShortcutCategoryCardProps extends ShortcutCategory {}
 
@@ -7,25 +9,25 @@ export default function ShortcutCategoryCard({
   id,
   attributes,
 }: ShortcutCategoryCardProps) {
-  console.log("ShortcutCategoryCard", id);
+  const selectedOperatingSystem = useSelector(selectOperatingSystem);
   const { name, shortcuts } = attributes;
   const shortcutsList = shortcuts?.data;
   const isShortcutListEmpty = shortcutsList?.length === 0;
+  if (isShortcutListEmpty) {
+    return null;
+  }
   return (
-    <div
-      className={
-        "p-2 border-[1px] border-gray-400 rounded m-2 w-[48%] overflow-hidden flex flex-col" +
-        " items-center" +
-        "justify-between "
-      }
-    >
-      <div className={"text-center w-full bg-gray-100 mb-1 rounded p-1"}>
+    <div className={`m-2 w-full`}>
+      <div
+        className={
+          "text-start w-full bg-gray-200 mb-2 rounded p-2 font-semibold"
+        }
+      >
         {name}
       </div>
-      {isShortcutListEmpty && <div>No shortcuts found</div>}
       {shortcuts?.data?.map((shortcutData: Shortcut) => {
         const { id, attributes } = shortcutData;
-        return <KeyComboItem id={id} attributes={attributes} key={id} />;
+        return <KeyComboItem id={id} attributes={attributes} key={id} operatingSystem={selectedOperatingSystem}/>;
       })}
     </div>
   );

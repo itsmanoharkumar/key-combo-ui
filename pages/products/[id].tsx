@@ -1,6 +1,7 @@
 import ProductList from "@/components/molecules/ProductList";
 import ShortcutCategoryCard from "@/components/ShortcutCateroryCard";
 import { API_ROUTES } from "@/helpers/constants";
+import backIcon from "@/images/back.png";
 
 import comingSoon from "@/images/coming-soon.jpg";
 import fetcher from "@/service/service";
@@ -12,6 +13,7 @@ import {
 import { Product, ShortcutCategory } from "@/types/types";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -79,7 +81,7 @@ export default function ProductPage({
       <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
         <div
           className={
-            "h-full max-w-[200px] h-full w-full overflow-y-auto border-r-[1px]"
+            "h-full max-w-[200px] h-full w-full overflow-y-auto border-r-[1px] hidden md:block"
           }
         >
           <ProductList
@@ -94,7 +96,17 @@ export default function ProductPage({
               "flex flex-col p-2 m-2 h-[calc(100vh_-_58px)] overflow-y-auto w-full"
             }
           >
-            <h1 className={"text-[36px] font-bold ml-2"}>{productName}</h1>
+            <div className={"flex items-center"}>
+              <Link href={"/"}>
+                <Image
+                  className={"w-[20px] h-[20px]"}
+                  src={backIcon}
+                  width={300}
+                  alt={"Coming Soon!!!"}
+                />
+              </Link>
+              <h1 className={"text-2xl font-bold ml-2"}>{productName}</h1>
+            </div>
             {isShortcutCategoryListEmpty && (
               <div className={"mt-2 flex justify-center w-full"}>
                 <Image

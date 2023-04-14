@@ -1,17 +1,21 @@
-import { Shortcut } from "@/types/types";
+import KeyCombo from "@/components/molecules/KeyCombo";
+import { OPERATING_SYSTEM, Shortcut } from "@/types/types";
 
-interface KeyComboItemProps extends Shortcut {}
+interface KeyComboItemProps extends Shortcut {
+  operatingSystem: OPERATING_SYSTEM;
+}
 
-export default function KeyComboItem({ attributes }: KeyComboItemProps) {
-  const { windowsKeyCombo, shortText } = attributes;
+export default function KeyComboItem({ attributes , operatingSystem }: KeyComboItemProps) {
+  const { windowsKeyCombo, shortText, macKeyCombo } = attributes;
+  const keyCombo = operatingSystem === OPERATING_SYSTEM.MAC ? macKeyCombo : windowsKeyCombo;
   return (
     <div
-      className={"flex w-full p-1 border-[1px] rounded mb-1 border-gray-100"}
+      className={"w-full p-1 border-[1px] rounded mb-1 border-gray-100 bg-gray-100"}
     >
-      <div className={"m-1 p-1 w-1/2 border-r-[1px] font-medium"}>
-        {windowsKeyCombo}
+      <div className={"m-1 p-1"}>
+        <KeyCombo keyCombo={keyCombo} operatingSystem={operatingSystem} />
       </div>
-      <div className={"m-1 p-1 w-1/2"}>{shortText}</div>
+      <div className={"m-1 p-1"}>{shortText}</div>
     </div>
   );
 }

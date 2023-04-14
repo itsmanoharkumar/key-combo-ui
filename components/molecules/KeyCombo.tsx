@@ -1,0 +1,26 @@
+import KeyboardButton from "@/components/atoms/KeyboardButton";
+import { OPERATING_SYSTEM } from "@/types/types";
+
+interface OwnProps {
+  operatingSystem: OPERATING_SYSTEM;
+  keyCombo: string;
+}
+
+export default function KeyCombo({ keyCombo, operatingSystem }: OwnProps) {
+  const keyComboArray = keyCombo?.split(" ");
+  console.log("KeyCombo", keyComboArray);
+  return (
+    <div className={`w-full font-mono font-semibold flex items-center`}>
+      {keyComboArray?.map((key) => {
+        return (
+          <div key={key} className={'px-[4px]'}>
+            <KeyboardButton
+                            operatingSystem={operatingSystem}
+                            keyValue={key}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
