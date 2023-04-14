@@ -25,22 +25,43 @@ const keyboardButtonMap: Record<string, string> = {
   Return: "⌤",
   Esc: "⎋",
   Space: "␣",
+  Insert: "Insert",
 };
 
 export default function KeyboardButton({ operatingSystem, keyValue }: OwnProps) {
-  let value = keyboardButtonMap[keyValue];
-  if (!value) {
-    value = keyValue;
-  }
-  if(operatingSystem === OPERATING_SYSTEM.MAC && ["Ctrl"].includes(keyValue)) {
-    value = keyValue;
-  }
-  if(['+', ','].includes(keyValue?.trim())){
-    return <div className={'font-mono select-none'}>
-      {keyValue}
-    </div>
+  let mappedValue = keyboardButtonMap[keyValue];
+  let showButton = false;
+  let showText = false;
+  let textValue = "";
+  let buttonText = "";
+  if(!mappedValue && keyValue?.length === 1) {
+    showButton = true;
+    buttonText = keyValue;
+    if (['+', ','].includes(keyValue?.trim())) {
+      showButton = false;
+      showText = true;
+      textValue = keyValue;
+    }
+  } else if(!mappedValue) {
+    showText = true;
+    textValue = keyValue;
+  } else if(mappedValue) {
+    showButton = true;
+    buttonText = mappedValue;
+    if(operatingSystem === OPERATING_SYSTEM.MAC && ["Cmd"].includes(keyValue)) {
+      buttonText = keyValue
+    }
   }
   return (
-    <div className={`font-mono text-white bg-gray-600 inline-flex select-none items-center justify-center w-10 h-10 text-lg font-medium border border-gray-300 rounded shadow-sm`}>{value}</div>
+    <>
+      {showButton && (
+        <div className={`px-1 flex items-center justify-center font-mono text-white bg-gray-600 select-none min-w-[2.5rem] max-w-[110px] h-10 text-lg font-medium border border-gray-300 rounded shadow-sm overflow-ellipsis overflow-hidden`}>{buttonText}</div>
+      )}
+      {showText && (
+        <div className={'font-mono select-none'}>
+          {textValue}
+        </div>
+      )}
+    </>
   );
 }
