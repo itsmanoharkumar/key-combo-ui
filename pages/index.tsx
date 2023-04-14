@@ -38,14 +38,12 @@ export default function Home({ productList }: { productList: Product[] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
-        <div className={"h-full h-[2000px] w-full overflow-y-scroll"}>
+      <div className={"flex justify-start h-[calc(100vh_-_150px)] overflow-scroll"}>
           <ProductCardList
             selectedProductId={selectedProductId}
             products={productList}
             onClick={handleProductItemClick}
           />
-        </div>
       </div>
     </>
   );

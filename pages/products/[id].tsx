@@ -78,10 +78,10 @@ export default function ProductPage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={"flex justify-start h-[calc(100vh_-_58px)]"}>
+      <div className={"flex justify-start h-[calc(100vh_-_150px)] overflow-auto"}>
         <div
           className={
-            "h-full max-w-[200px] h-full w-full overflow-y-auto border-r-[1px] hidden md:block"
+            "max-w-[200px] w-full overflow-y-auto border-r-[1px] hidden md:block"
           }
         >
           <ProductList
@@ -93,7 +93,7 @@ export default function ProductPage({
         <div className={"w-full"}>
           <div
             className={
-              "flex flex-col p-2 m-2 h-[calc(100vh_-_58px)] overflow-y-auto w-full"
+              "flex flex-col p-2 m-2 overflow-y-auto w-full"
             }
           >
             <div className={"flex items-center"}>
