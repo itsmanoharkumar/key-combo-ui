@@ -15,6 +15,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export async function getStaticProps({ params }: any) {
@@ -61,14 +62,38 @@ export default function ProductPage({
   const router = useRouter();
   const dispatch = useDispatch();
   const selectedProductId = useSelector(selectSelectedProductId);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchedShortcutCategoryList, setSearchedShortcutCategoryList] =
+    useState<ShortcutCategory[]>([]);
 
   function handleProductItemClick(id: number) {
     dispatch(setSelectedProductId(id));
     router.replace(`/products/${id}`);
   }
 
+  useEffect(() => {
+    const searchedShortcutCategoryListInner = shortcutCategoriesData?.filter(
+      (shortcutCategory) =>
+        shortcutCategory.attributes.name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+    );
+    if (!searchTerm) {
+      setSearchedShortcutCategoryList(shortcutCategoriesData);
+      return;
+    }
+    if (searchedShortcutCategoryListInner?.length === 0) {
+      setSearchedShortcutCategoryList([]);
+    } else {
+      setSearchedShortcutCategoryList(searchedShortcutCategoryListInner);
+    }
+  }, [searchTerm, shortcutCategoriesData]);
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   const productName = productData?.attributes?.name;
-  const shortcutCategoryList = shortcutCategoriesData;
   const isShortcutCategoryListEmpty = shortcutCategoriesData?.length === 0;
   return (
     <>
@@ -78,8 +103,12 @@ export default function ProductPage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={"flex justify-start sm:h-[calc(100vh_-_58px)] h-[calc(100vh_-_150px)] overflow-y-auto" +
-        " overflow-hidden"}>
+      <div
+        className={
+          "flex justify-start sm:h-[calc(100vh_-_58px)] h-[calc(100vh_-_150px)] overflow-y-auto" +
+          " overflow-hidden"
+        }
+      >
         <div
           className={
             "max-w-[200px] w-full overflow-y-auto border-r-[1px] hidden md:block"
@@ -92,11 +121,7 @@ export default function ProductPage({
           />
         </div>
         <div className={"w-full"}>
-          <div
-            className={
-              "flex flex-col p-2 m-2 overflow-y-auto w-full"
-            }
-          >
+          <div className={"flex flex-col p-2 m-2 overflow-y-auto w-full"}>
             <div className={"flex items-center"}>
               <Link href={"/"}>
                 <Image
@@ -107,6 +132,14 @@ export default function ProductPage({
                 />
               </Link>
               <h1 className={"text-3xl font-bold ml-2"}>{productName}</h1>
+            </div>
+            <div className={"mx-2"}>
+              <input
+                onChange={handleSearch}
+                className={"w-full p-2 rounded border border-gray-300"}
+                type="text"
+                placeholder="Search"
+              />
             </div>
             {isShortcutCategoryListEmpty && (
               <div className={"mt-2 flex justify-center w-full"}>
@@ -119,7 +152,7 @@ export default function ProductPage({
               </div>
             )}
             <div className={"mt-2] flex flex-wrap"}>
-              {shortcutCategoryList?.map((item: any) => {
+              {searchedShortcutCategoryList?.map((item: any) => {
                 return (
                   <ShortcutCategoryCard
                     key={item.id}
