@@ -11,8 +11,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
 export async function getStaticProps() {
-  console.log(process.env.NEXT_PUBLIC_SERVER_BASE_URL);
-  const { data } = await fetcher(API_ROUTES.products);
+  const { data } = await fetcher(API_ROUTES.products+'?populate[0]=logo');
   return {
     props: {
       productList: data,

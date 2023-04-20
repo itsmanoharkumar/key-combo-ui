@@ -1,7 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: 'keycomboserver.blob.core.windows.net'
+      },
+      {
+        protocol: "http",
+        port: "1337",
+        hostname: 'localhost'
+      }
+    ]
+  },
   async redirects() {
     return [
       {
