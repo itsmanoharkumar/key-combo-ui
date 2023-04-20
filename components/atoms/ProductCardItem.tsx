@@ -29,7 +29,7 @@ export default function ProductCardItem({
           }
         >
           {imageUrl && (
-            <Image src={imageUrl} alt="test" width={50} height={50} />
+            <Image src={imageUrl} alt="logo" width={50} height={50} />
           )}
         </div>
       )}

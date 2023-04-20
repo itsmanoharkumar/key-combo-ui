@@ -37,7 +37,6 @@ export default function Home({ productList }: { productList: Product[] }) {
     const searchedProductListInner = productList?.filter((product) =>
       product.attributes.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    console.log(searchTerm, searchedProductListInner);
     if (!searchTerm) {
       setSearchedProductList(productList);
       return;
