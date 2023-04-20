@@ -1,6 +1,5 @@
 import { Product } from "@/types/types";
 import Image from "next/image";
-import placeholder from "@/images/placeholder.png";
 
 interface ProductListItemProps extends Product {
   onClick: (id: number) => void;
@@ -20,7 +19,7 @@ export default function ProductCardItem({
   return (
     <div
       className={`flex justify-center flex-col items-center bg-gray-800 text-gray-200 text-sm font-semibold
-      p-2 flex-wrap transition-all duration-100   hover:text-black hover:cursor-pointer my-1 rounded border-[1px] border-gray-300 hover:border-gray-400 hover:bg-pastelYellow w-[46%] sm:w-[30%] md:w-[150px] h-[150px] mx-1`}
+      p-2 flex-wrap transition-all duration-100 hover:text-black hover:cursor-pointer my-1 rounded border-[1px] border-gray-300 hover:border-gray-400 hover:bg-pastelYellow w-[46%] sm:w-[30%] md:w-[150px] h-[150px] mr-1`}
       onClick={() => onClick(id)}
     >
       {imageUrl && (

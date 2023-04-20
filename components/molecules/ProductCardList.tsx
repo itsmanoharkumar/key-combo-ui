@@ -13,7 +13,7 @@ export default function ProductCardList({
   selectedProductId,
 }: ProductListProps) {
   return (
-    <div className="sm:p-10 p-4 w-full overflow-y-auto px-2 select-none flex flex-wrap  justify-center items-start">
+    <div className="w-full select-none flex flex-wrap justify-start">
       {products?.map((product) => {
         return (
           <ProductCardItem

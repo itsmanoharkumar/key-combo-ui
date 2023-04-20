@@ -3,8 +3,6 @@ G
 pages/products/[id].tsx,a\0\a0c7d798bc6aa6ecdfe531b09ab18e740d12f705
 S
 #components/ShortcutCateroryCard.tsx,b\1\b103acc413d8660146253cb17635e352ec28f5c2
-?
-pages/index.tsx,b\3\b3357635c26d1b52053382ce7e8a8640d31fedc8
 4
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 >
