@@ -11,11 +11,11 @@ export default function ProductCardItem({
   onClick,
 }: ProductListItemProps) {
   let imageUrl = logo?.data?.attributes?.formats?.thumbnail?.url;
-  if (imageUrl?.startsWith("/")) {
-    imageUrl = imageUrl
-      .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
-      .replace("api/", "");
-  }
+  // if (imageUrl?.startsWith("/")) {
+  //   imageUrl = imageUrl
+  //     .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
+  //     .replace("api/", "");
+  // }
   console.log(imageUrl);
   return (
     <div
