@@ -2,7 +2,7 @@ import UserAuthContext from "@/context/UserAuthContext";
 import Layout from "@/layouts/layout";
 import { wrapper } from "@/store/store";
 import "@/styles/globals.css";
-import { Analytics } from "@vercel/analytics/dist/react";
+import { Analytics } from "@vercel/analytics/react";
 import axios from "axios";
 import type { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
