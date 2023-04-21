@@ -10,12 +10,21 @@ export default function ProductCardItem({
   attributes: { name, logo },
   onClick,
 }: ProductListItemProps) {
+  function myImageLoader({ src, width, quality }: any) {
+    return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+  }
+
   let imageUrl = logo?.data?.attributes?.formats?.thumbnail?.url;
   if (imageUrl?.startsWith("/")) {
     imageUrl = imageUrl
       .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
       .replace("api/", "");
   }
+  imageUrl = myImageLoader({
+    src: imageUrl,
+    width: logo?.data?.attributes?.formats?.thumbnail?.width,
+    quality: 75,
+  });
   console.log(imageUrl);
   return (
     <div
