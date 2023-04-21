@@ -17,17 +17,17 @@ export default function ProductCardItem({
     )}${src}?w=${width}&q=${quality || 75}`;
   }
 
-  // let imageUrl = logo?.data?.attributes?.formats?.thumbnail?.url;
-  // if (imageUrl?.startsWith("/")) {
-  //   imageUrl = imageUrl
-  //     .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
-  //     .replace("api/", "");
-  // }
-  let imageUrl = myImageLoader({
-    src: logo?.data?.attributes?.formats?.thumbnail?.url,
-    width: logo?.data?.attributes?.formats?.thumbnail?.width,
-    quality: 75,
-  });
+  let imageUrl = logo?.data?.attributes?.formats?.thumbnail?.url;
+  if (imageUrl?.startsWith("/")) {
+    imageUrl = imageUrl
+      .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
+      .replace("api/", "");
+  }
+  // let imageUrl = myImageLoader({
+  //   src: logo?.data?.attributes?.formats?.thumbnail?.url,
+  //   width: logo?.data?.attributes?.formats?.thumbnail?.width,
+  //   quality: 75,
+  // });
   console.log(imageUrl);
   return (
     <div
