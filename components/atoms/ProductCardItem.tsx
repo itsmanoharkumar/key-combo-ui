@@ -23,11 +23,6 @@ export default function ProductCardItem({
       .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
       .replace("api/", "");
   }
-  // let imageUrl = myImageLoader({
-  //   src: logo?.data?.attributes?.formats?.thumbnail?.url,
-  //   width: logo?.data?.attributes?.formats?.thumbnail?.width,
-  //   quality: 75,
-  // });
   console.log(imageUrl);
   return (
     <div
