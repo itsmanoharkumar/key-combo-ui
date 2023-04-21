@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["keycomboserver.blob.core.windows.net"],
+    domains: ["key-combo-server.azurewebsites.net"],
   },
   async redirects() {
     return [
