@@ -2,12 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "keycomboserver.blob.core.windows.net",
-      },
-    ],
+    domains: ["keycomboserver.blob.core.windows.net"],
   },
   async redirects() {
     return [
