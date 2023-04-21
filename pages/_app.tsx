@@ -2,6 +2,7 @@ import UserAuthContext from "@/context/UserAuthContext";
 import Layout from "@/layouts/layout";
 import { wrapper } from "@/store/store";
 import "@/styles/globals.css";
+import { Analytics } from "@vercel/analytics/dist/react";
 import axios from "axios";
 import type { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
@@ -23,6 +24,7 @@ export default function App({ Component, ...rest }: AppProps) {
             <UserAuthContext>
               <Layout>
                 <Component {...pageProps} />
+                <Analytics />
                 {/*<CookieConsent>*/}
                 {/*  This website uses cookies to enhance the user experience.*/}
                 {/*</CookieConsent>*/}
