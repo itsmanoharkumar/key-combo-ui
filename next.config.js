@@ -5,14 +5,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: 'keycomboserver.blob.core.windows.net'
+        hostname: "keycomboserver.blob.core.windows.net",
       },
-      {
-        protocol: "http",
-        port: "1337",
-        hostname: 'localhost'
-      }
-    ]
+    ],
   },
   async redirects() {
     return [
