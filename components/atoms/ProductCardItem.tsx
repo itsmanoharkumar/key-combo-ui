@@ -29,7 +29,9 @@ export default function ProductCardItem({
             "p-2 bg-gray-100 border-gray-500 border-[1px] mb-2 rounded-2xl flex justify-center"
           }
         >
-          {imageUrl && <Image src={imageUrl} alt="logo" />}
+          {imageUrl && (
+            <Image src={imageUrl} alt="logo" width={156} height={156} />
+          )}
         </div>
       )}
       <div>{name}</div>
