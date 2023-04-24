@@ -10,7 +10,7 @@ import {
   selectSelectedProductId,
   setSelectedProductId,
 } from "@/store/productSlice";
-import { Product, ShortcutCategory } from "@/types/types";
+import { Product, Shortcut, ShortcutCategory } from "@/types/types";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,12 +72,33 @@ export default function ProductPage({
   }
 
   useEffect(() => {
-    const searchedShortcutCategoryListInner = shortcutCategoriesData?.filter(
-      (shortcutCategory) =>
-        shortcutCategory.attributes.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
+    let searchedShortcutCategoryListInner = shortcutCategoriesData?.map(
+      (shortcutCategory) => {
+        let filteredData: Shortcut[] =
+          shortcutCategory?.attributes?.shortcuts?.data?.filter(
+            (shortcut) =>
+              shortcut.attributes.shortText
+                ?.toLowerCase()
+                ?.includes(searchTerm.toLowerCase()) ||
+              shortcut.attributes.macKeyCombo
+                ?.toLowerCase()
+                ?.includes(searchTerm.toLowerCase())
+          ) || [];
+        return {
+          id: shortcutCategory.id,
+          attributes: {
+            ...shortcutCategory.attributes,
+            shortcuts: {
+              data: filteredData,
+            },
+          },
+        };
+      }
     );
+    searchedShortcutCategoryListInner =
+      searchedShortcutCategoryListInner?.filter(
+        (item) => item?.attributes?.shortcuts?.data?.length > 0
+      );
     if (!searchTerm) {
       setSearchedShortcutCategoryList(shortcutCategoriesData);
       return;
@@ -133,7 +154,7 @@ export default function ProductPage({
               </Link>
               <h1 className={"text-3xl font-bold ml-2"}>{productName}</h1>
             </div>
-            <div className={"mx-2"}>
+            <div className={"mx-2 mt-4"}>
               <input
                 onChange={handleSearch}
                 className={"w-full p-2 rounded border border-gray-300"}
