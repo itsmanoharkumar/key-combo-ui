@@ -1,57 +1,9 @@
-import ProductCardList from "@/components/molecules/ProductCardList";
-import { API_ROUTES } from "@/helpers/constants";
-import fetcher from "@/service/service";
-import {
-  selectSelectedProductId,
-  setSelectedProductId,
-} from "@/store/productSlice";
+import Link from "@/components/atoms/Link";
 import { Product } from "@/types/types";
-import { debounce } from "lodash";
+import { Box, Container, Typography } from "@mui/material";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { ChangeEvent, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useSWR from "swr";
-
-export async function getStaticProps() {
-  const { data } = await fetcher(API_ROUTES.products + "?populate[0]=logo");
-  return {
-    props: {
-      productList: data,
-    }, // will be passed to the page component as props
-  };
-}
 
 export default function Home({ productList }: { productList: Product[] }) {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const selectedProductId = useSelector(selectSelectedProductId);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchedProductList, setSearchedProductList] = useState<Product[]>([]);
-  function handleProductItemClick(id: number) {
-    dispatch(setSelectedProductId(id));
-    router.replace(`products/${id}`);
-  }
-
-  useEffect(() => {
-    const searchedProductListInner = productList?.filter((product) =>
-      product.attributes.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (!searchTerm) {
-      setSearchedProductList(productList);
-      return;
-    }
-    if (searchedProductListInner?.length === 0) {
-      setSearchedProductList([]);
-    } else {
-      setSearchedProductList(searchedProductListInner);
-    }
-  }, [searchTerm]);
-
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
   return (
     <>
       <Head>
@@ -60,28 +12,24 @@ export default function Home({ productList }: { productList: Product[] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={
-          "sm:h-[calc(100vh_-_58px)] h-[calc(100vh_-_150px)] overflow-y-auto"
-        }
-      >
-        <div className="sm:p-10 py-4 w-full px-2">
-          <div className={"w-full sm:w-[400px] mb-2"}>
-            <input
-              onChange={handleSearch}
-              className={
-                "border-[1px] border-gray-800 w-full rounded px-2 font-mono"
-              }
-              placeholder={"Search product"}
-            />
-          </div>
-          <ProductCardList
-            selectedProductId={selectedProductId}
-            products={searchedProductList}
-            onClick={handleProductItemClick}
-          />
-        </div>
-      </div>
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Material UI - Next.js example in TypeScript
+          </Typography>
+          <Link href="/about" color="secondary">
+            Go to the about page
+          </Link>
+        </Box>
+      </Container>
     </>
   );
 }
