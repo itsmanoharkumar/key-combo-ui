@@ -1,6 +1,7 @@
 import createEmotionCache from "@/createEmotionCache";
-import theme, { roboto } from "@/theme";
+import { poppins } from "@/theme";
 import createEmotionServer from "@emotion/server/create-instance";
+import { useTheme } from "@mui/material/styles";
 import { AppType } from "next/app";
 import Document, {
   DocumentContext,
@@ -17,8 +18,9 @@ interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
 }
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+  const theme = useTheme();
   return (
-    <Html lang="en" className={roboto.className}>
+    <Html lang="en" className={poppins.className}>
       <Head>
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="manifest" href="/manifest.json" />
