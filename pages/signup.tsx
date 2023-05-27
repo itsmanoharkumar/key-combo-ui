@@ -1,6 +1,8 @@
-import Button from "@/components/atoms/Button";
-import errorIcon from "@/images/error.svg";
+import Link from "@/components/atoms/Link";
+import RegisterImage from "@/images/register.svg";
 import { register } from "@/service/authentication";
+import { Button, Container, Stack, TextField, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -35,81 +37,65 @@ export default function Signup() {
   }
 
   return (
-    <div className={"h-[calc(100vh_-_80px)] flex justify-center"}>
-      <div className={"mt-40"}>
-        <div className={"w-[500px] border-[1px] rounded border-gray"}>
-          <div
-            className={"p-4 font-medium text-[18px] border-b-[1px] border-gray"}
-          >
-            Signup
-          </div>
-          <div className={"px-4 mt-2"}>
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="text"
+    <Container maxWidth={"xl"}>
+      <Grid container my={10} justifyContent={"center"} spacing={2}>
+        <Grid xs={12} sm={6} md={4} lg={3}>
+          <Typography sx={{ mb: 1.5 }} variant="h3" component="div">
+            Register
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Join KeyCombo and Boost Your Productivity
+          </Typography>
+          <Stack spacing={2}>
+            <TextField
+              label="Email"
+              variant="outlined"
               value={username}
-              placeholder={"Enter your username"}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="text"
+            <TextField
+              label="Email"
+              variant="outlined"
               value={email}
-              placeholder={"Enter your email"}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setEmail(e.target.value)}
             />
-
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="password"
+            <TextField
+              label="Password"
+              variant="outlined"
               value={password}
-              placeholder={"Enter your password"}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <input
-              className={"border-[1px] rounded w-full border-gray p-2 my-2"}
-              type="password"
+            <TextField
+              label="Confirm Password"
+              variant="outlined"
               value={confirmPassword}
-              placeholder={"Confirm your password"}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            <Button variant="contained" color="primary" onClick={handleSignup}>
+              Register
+            </Button>
+          </Stack>
+          <div className="flex justify-between pt-2 items-center">
+            Already have account?
+            <Link href={"/login"}>
+              <Button variant="text" color="inherit">
+                Login
+              </Button>
+            </Link>
           </div>
-          <div className={"w-full px-4 py-2 my-2 flex justify-between"}>
-            <div>
-              {!!errorMessage && (
-                <div
-                  className={
-                    "bg-pastelRed px-2 py-1 rounded flex justify-between items-center transition-all" +
-                    " duration-75 ease-in-out"
-                  }
-                >
-                  <Image
-                    className={"w-[20px] h-[20px] mr-2"}
-                    src={errorIcon}
-                    alt={"error"}
-                  />
-                  {errorMessage}
-                </div>
-              )}
-            </div>
-            <Button
-              isDisabled={isButtonDisabled}
-              text="Signup"
-              onClick={() => {
-                handleSignup();
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+        </Grid>
+        <Grid
+          sx={{
+            display: { xs: "none", sm: "flex", md: "flex" },
+          }}
+          sm={6}
+          p={2}
+          justifyContent={"center"}
+          display={"flex"}
+        >
+          <Image src={RegisterImage} alt="SignIn" className={"w-full"} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

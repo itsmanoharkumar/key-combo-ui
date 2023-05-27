@@ -32,11 +32,16 @@ export const enum OPERATING_SYSTEM {
   WINDOWS = "windows",
 }
 
+export const enum THEME_MODE {
+  LIGHT = "light",
+  DARK = "dark",
+}
+
 export type ProductAttributes = {
   name: string;
   logo: {
     data: ImageData;
-  }
+  };
 } & Timestamp;
 
 export type Product = {
@@ -47,9 +52,9 @@ export type Product = {
 export type ImageData = {
   id: number;
   attributes: ImageAttributes;
-}
+};
 
-export type ImageAttributes ={
+export type ImageAttributes = {
   name: string;
   alternativeText: null | string;
   caption: null | string;
@@ -111,4 +116,4 @@ export type ImageAttributes ={
   provider_metadata: null | object;
   createdAt: string;
   updatedAt: string;
-}
+};

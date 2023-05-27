@@ -3,7 +3,6 @@ import createEmotionCache from "@/createEmotionCache";
 import Layout from "@/layouts/layout";
 import { wrapper } from "@/store/store";
 import "@/styles/globals.css";
-import { getTheme } from "@/theme";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import "@fontsource/poppins/100-italic.css";
 import "@fontsource/poppins/100.css";
@@ -23,16 +22,10 @@ import "@fontsource/poppins/800-italic.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900-italic.css";
 import "@fontsource/poppins/900.css";
-import {
-  CssBaseline,
-  StyledEngineProvider,
-  ThemeProvider,
-  useMediaQuery,
-} from "@mui/material";
+import { StyledEngineProvider } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
 import axios from "axios";
 import type { AppProps } from "next/app";
-import { useMemo } from "react";
 import { CookiesProvider } from "react-cookie";
 import { Provider } from "react-redux";
 import { SWRConfig } from "swr";
@@ -50,31 +43,26 @@ export interface MyAppProps extends AppProps {
 export default function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps, emotionCache = clientSideEmotionCache } = props;
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const theme = useMemo(() => getTheme({ prefersDarkMode }), [prefersDarkMode]);
 
   return (
     <>
       <StyledEngineProvider injectFirst>
         <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <SWRConfig>
-              <CookiesProvider>
-                <Provider store={store}>
-                  <UserAuthContext>
-                    <Layout>
-                      <Component {...pageProps} />
-                      <Analytics />
-                      {/*<CookieConsent>*/}
-                      {/*  This website uses cookies to enhance the user experience.*/}
-                      {/*</CookieConsent>*/}
-                    </Layout>
-                  </UserAuthContext>
-                </Provider>
-              </CookiesProvider>
-            </SWRConfig>
-          </ThemeProvider>
+          <SWRConfig>
+            <CookiesProvider>
+              <Provider store={store}>
+                <UserAuthContext>
+                  <Layout>
+                    <Component {...pageProps} />
+                    <Analytics />
+                    {/*<CookieConsent>*/}
+                    {/*  This website uses cookies to enhance the user experience.*/}
+                    {/*</CookieConsent>*/}
+                  </Layout>
+                </UserAuthContext>
+              </Provider>
+            </CookiesProvider>
+          </SWRConfig>
         </CacheProvider>
       </StyledEngineProvider>
     </>

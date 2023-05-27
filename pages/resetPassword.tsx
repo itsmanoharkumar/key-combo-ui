@@ -1,5 +1,4 @@
-import Link from "@/components/atoms/Link";
-import SignInImage from "@/images/sign-in.svg";
+import ForgotPasswordImage from "@/images/forgot-password.svg";
 import { login } from "@/service/authentication";
 import { selectAuthState } from "@/store/authSlice";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
@@ -45,10 +44,7 @@ export default function Login() {
       <Grid container my={10} justifyContent={"center"} spacing={2}>
         <Grid xs={12} sm={6} md={4} lg={3}>
           <Typography sx={{ mb: 1.5 }} variant="h3" component="div">
-            Log In
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Unlock Efficiency and Take Command of Your Digital Experience
+            Reset Password
           </Typography>
           <Stack spacing={2}>
             <TextField
@@ -65,21 +61,9 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button variant="contained" color="primary" onClick={handleLogin}>
-              Log In
+              Reset Password
             </Button>
           </Stack>
-          <div className="flex justify-between pt-2">
-            <Link href={"/signup"}>
-              <Button variant="text" color="inherit" onClick={handleLogin}>
-                Create Account
-              </Button>
-            </Link>
-            <Link href={"/resetPassword"}>
-              <Button variant="text" color="primary">
-                Forgot Password?
-              </Button>
-            </Link>
-          </div>
         </Grid>
         <Grid
           sx={{
@@ -90,7 +74,7 @@ export default function Login() {
           justifyContent={"center"}
           display={"flex"}
         >
-          <Image src={SignInImage} alt="SignIn" className={"w-full"} />
+          <Image src={ForgotPasswordImage} alt="SignIn" className={"w-full"} />
         </Grid>
       </Grid>
     </Container>

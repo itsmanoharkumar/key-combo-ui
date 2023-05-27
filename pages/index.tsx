@@ -1,6 +1,7 @@
 import Link from "@/components/atoms/Link";
 import { Product } from "@/types/types";
 import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
 
 export default function Home({ productList }: { productList: Product[] }) {
@@ -23,10 +24,291 @@ export default function Home({ productList }: { productList: Product[] }) {
           }}
         >
           <Typography variant="h4" component="h1" gutterBottom>
-            Material UI - Next.js example in TypeScript
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
           </Typography>
           <Link href="/about">Go to the about page</Link>
         </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Box
+          sx={{
+            my: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" component="h1" gutterBottom>
+            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          </Typography>
+          <Link href="/about">Go to the about page</Link>
+        </Box>
+        <Grid></Grid>
       </Container>
     </>
   );

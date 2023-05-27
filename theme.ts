@@ -10,28 +10,32 @@ export const poppins = Poppins({
 
 // Create a theme instance.
 
-export function getTheme({ prefersDarkMode }: { prefersDarkMode: boolean }) {
+export function getTheme({ enableDarkMode }: { enableDarkMode: boolean }) {
   return createTheme({
     palette: {
-      mode: prefersDarkMode ? "dark" : "light",
-      primary: {
-        main: "#FF5722",
-      },
-      secondary: {
-        main: "#424242",
-      },
-      error: {
-        main: "#F44336",
-      },
-      success: {
-        main: "#4caf50",
-      },
-      warning: {
-        main: "#ff9800",
-      },
-      info: {
-        main: "#9C27B0",
-      },
+      mode: enableDarkMode ? "dark" : "light",
+      // primary: {
+      //   main: "#FF5722",
+      //   contrastText: "#000",
+      // },
+      // background: {
+      //   default: enableDarkMode ? "#303030" : "#fff",
+      // },
+      // secondary: {
+      //   main: "#424242",
+      // },
+      // error: {
+      //   main: "#F44336",
+      // },
+      // success: {
+      //   main: "#4caf50",
+      // },
+      // warning: {
+      //   main: "#ff9800",
+      // },
+      // info: {
+      //   main: "#9C27B0",
+      // },
     },
     typography: {
       fontFamily: poppins.style.fontFamily,
