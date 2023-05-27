@@ -88,6 +88,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
+  console.log("Link.tsx: className: ", className);
 
   const isExternal =
     typeof href === "string" &&

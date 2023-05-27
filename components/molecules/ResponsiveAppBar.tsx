@@ -14,19 +14,37 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import clsx from "clsx";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useSelector } from "react-redux";
 
 const pages = [
-  "Home",
-  "Keyboard Shortcuts",
-  "Commands",
-  "About",
-  "Connect With Us",
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Keyboard Shortcuts",
+    href: "/keyboardShortcuts",
+  },
+  {
+    title: "Commands",
+    href: "/commands",
+  },
+  {
+    title: "About",
+    href: "/about",
+  },
+  {
+    title: "Connect With Us",
+    href: "/connect",
+  },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
+  const router = useRouter();
   const authState = useSelector(selectAuthState);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -84,8 +102,8 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -94,16 +112,30 @@ function ResponsiveAppBar() {
             <Logo />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                color="inherit"
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              const href = page.href;
+              console.log(router.pathname);
+              const className = clsx({
+                "text-[blue]": router.pathname === href,
+              });
+              const isActive = router.pathname === href;
+              console.log(className);
+              return (
+                <Link
+                  key={page.title}
+                  href={page.href}
+                  className="no-underline text-white"
+                >
+                  <Button
+                    color={isActive ? "primary" : "inherit"}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, display: "block" }}
+                  >
+                    {page.title}
+                  </Button>
+                </Link>
+              );
+            })}
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             &nbsp;
