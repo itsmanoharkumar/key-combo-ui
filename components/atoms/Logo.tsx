@@ -1,13 +1,14 @@
 import Link from "@/components/atoms/Link";
 import { KeyboardAlt } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 import * as React from "react";
 
 interface Props {}
 
 export default function Logo({}: Props) {
   return (
-    <div className={"flex justify-center items-center"}>
+    <Grid container alignItems={"center"} flexWrap={"nowrap"}>
       <KeyboardAlt color="primary" sx={{ mr: 1 }} />
       <Link
         href={"/"}
@@ -29,6 +30,6 @@ export default function Logo({}: Props) {
           KEYCOMBO
         </Typography>
       </Link>
-    </div>
+    </Grid>
   );
 }
