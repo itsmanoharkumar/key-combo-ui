@@ -91,6 +91,10 @@ function ResponsiveAppBar() {
     setState(false);
   };
 
+  let hideLoginButton = false;
+  if (router.pathname === "/login") {
+    hideLoginButton = true;
+  }
   return (
     <>
       <AppBar position="fixed" color="inherit">
@@ -201,7 +205,7 @@ function ResponsiveAppBar() {
                 </Menu>
               </Box>
             )}
-            {!authState && (
+            {!authState && !hideLoginButton && (
               <Box sx={{ flexGrow: 0 }} justifySelf={"end"}>
                 <Link href={"/login"}>
                   <Button variant="contained" sx={{ mr: 1 }}>
