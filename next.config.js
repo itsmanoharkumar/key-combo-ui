@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["key-combo-server.azurewebsites.net", "localhost"],
+    domains: ["keycombostorageaccount.blob.core.windows.net", "localhost"],
   },
   async redirects() {
     return [
