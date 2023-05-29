@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
@@ -47,6 +48,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
   const router = useRouter();
+  const theme = useTheme();
   const authState = useSelector(selectAuthState);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -149,19 +151,19 @@ function ResponsiveAppBar() {
                 const isActive = router.pathname === href;
                 console.log(className);
                 return (
-                  <Link
+                  <Button
                     key={page.title}
-                    href={page.href}
-                    className="no-underline text-white"
+                    color={isActive ? "primary" : "inherit"}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, display: "block" }}
                   >
-                    <Button
-                      color={isActive ? "primary" : "inherit"}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, display: "block" }}
+                    <Link
+                      href={page.href}
+                      className={`no-underline text-inherit`}
                     >
                       {page.title}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 );
               })}
             </Box>
