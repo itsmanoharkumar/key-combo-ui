@@ -18,7 +18,6 @@ export default function Login() {
 
   async function handleSend() {
     try {
-      console.log("test");
       // const response = await login({ identifier: name, email });s
     } catch (e: any) {
       setErrorMessage(e.message);

@@ -1,25 +1,19 @@
-import ProductList from "@/components/molecules/ProductList";
 import ShortcutCategoryCard from "@/components/ShortcutCateroryCard";
 import { API_ROUTES } from "@/helpers/constants";
-import backIcon from "@/images/back.png";
-
-import comingSoon from "@/images/coming-soon.jpg";
 import fetcher from "@/service/service";
 import { fetchShortcutCategoriesForProduct } from "@/service/shortcutCategories";
-import {
-  selectSelectedProductId,
-  setSelectedProductId,
-} from "@/store/productSlice";
 import { Product, Shortcut, ShortcutCategory } from "@/types/types";
+import Masonry from "@mui/lab/Masonry";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export async function getStaticProps({ params }: any) {
-  const { data: productList } = await fetcher(API_ROUTES.products);
   const { data: productData } = await fetcher(
     `${API_ROUTES.products}/${params?.id}`
   );
@@ -30,7 +24,6 @@ export async function getStaticProps({ params }: any) {
     );
   return {
     props: {
-      productList,
       productData,
       shortcutCategoriesData,
     },
@@ -49,27 +42,19 @@ export async function getStaticPaths() {
 }
 
 interface OwnProps {
-  productList: Product[];
   productData: Product;
   shortcutCategoriesData: ShortcutCategory[];
 }
 
 export default function ProductPage({
-  productList,
   productData,
   shortcutCategoriesData,
 }: OwnProps) {
   const router = useRouter();
   const dispatch = useDispatch();
-  const selectedProductId = useSelector(selectSelectedProductId);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedShortcutCategoryList, setSearchedShortcutCategoryList] =
     useState<ShortcutCategory[]>([]);
-
-  function handleProductItemClick(id: number) {
-    dispatch(setSelectedProductId(id));
-    router.replace(`/products/${id}`);
-  }
 
   useEffect(() => {
     let searchedShortcutCategoryListInner = shortcutCategoriesData?.map(
@@ -124,68 +109,40 @@ export default function ProductPage({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={
-          "flex justify-start sm:h-[calc(100vh_-_58px)] h-[calc(100vh_-_150px)] overflow-y-auto" +
-          " overflow-hidden"
-        }
-      >
-        <div
-          className={
-            "max-w-[200px] w-full overflow-y-auto border-r-[1px] hidden md:block"
-          }
+      <Container maxWidth={"xl"}>
+        <Box
+          sx={{
+            my: 2,
+          }}
         >
-          <ProductList
-            selectedProductId={selectedProductId}
-            products={productList}
-            onClick={handleProductItemClick}
-          />
-        </div>
-        <div className={"w-full"}>
-          <div className={"flex flex-col p-2 m-2 overflow-y-auto w-full"}>
-            <div className={"flex items-center"}>
-              <Link href={"/"}>
-                <Image
-                  className={"w-[20px] h-[20px]"}
-                  src={backIcon}
-                  width={300}
-                  alt={"Coming Soon!!!"}
-                />
-              </Link>
-              <h1 className={"text-3xl font-bold ml-2"}>{productName}</h1>
-            </div>
-            <div className={"mx-2 mt-4"}>
-              <input
-                onChange={handleSearch}
-                className={"w-full p-2 rounded border border-gray-300"}
-                type="text"
-                placeholder="Search"
-              />
-            </div>
-            {isShortcutCategoryListEmpty && (
-              <div className={"mt-2 flex justify-center w-full"}>
-                <Image
-                  className={"w-[500px]"}
-                  src={comingSoon}
-                  width={300}
-                  alt={"Coming Soon!!!"}
-                />
-              </div>
-            )}
-            <div className={"mt-2] flex flex-wrap"}>
-              {searchedShortcutCategoryList?.map((item: any) => {
+          <Typography
+            sx={{
+              typography: {
+                xs: "h4",
+                md: "h3",
+              },
+            }}
+            color="primary"
+            gutterBottom
+          >
+            {productName}
+          </Typography>
+          <Box>
+            <Masonry spacing={2} columns={{ xs: 1, md: 2 }}>
+              {searchedShortcutCategoryList?.map((item: any, index) => {
                 return (
-                  <ShortcutCategoryCard
-                    key={item.id}
-                    id={item.id}
-                    attributes={item.attributes}
-                  />
+                  <Grid key={item.id} xs={12} md={6}>
+                    <ShortcutCategoryCard
+                      id={item.id}
+                      attributes={item.attributes}
+                    />
+                  </Grid>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Masonry>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 }

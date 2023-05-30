@@ -144,12 +144,10 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {routeList.map((page) => {
                 const href = page.href;
-                console.log(router.pathname);
                 const className = clsx({
                   "text-[blue]": router.pathname === href,
                 });
                 const isActive = router.pathname === href;
-                console.log(className);
                 return (
                   <Button
                     key={page.title}

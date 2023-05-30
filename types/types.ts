@@ -8,6 +8,7 @@ export type ShortcutAttributes = {
   shortText: string;
   windowsKeyCombo: string;
   macKeyCombo: string;
+  description: string;
 } & Timestamp;
 
 export type Shortcut = {
@@ -27,6 +28,21 @@ export type ShortcutCategory = {
   attributes: ShortcutCategoryAttributes;
 };
 
+export interface ProductCategoryAttributes {
+  name: string;
+  products?: {
+    data: Array<Product>;
+  };
+  logo: {
+    data: StrapiImageData;
+  };
+}
+
+export type ProductCategory = {
+  id: number;
+  attributes: ProductCategoryAttributes;
+};
+
 export const enum OPERATING_SYSTEM {
   MAC = "mac",
   WINDOWS = "windows",
@@ -40,7 +56,7 @@ export const enum THEME_MODE {
 export type ProductAttributes = {
   name: string;
   logo: {
-    data: ImageData;
+    data: StrapiImageData;
   };
 } & Timestamp;
 
@@ -49,7 +65,27 @@ export type Product = {
   attributes: ProductAttributes;
 };
 
-export type ImageData = {
+export type HomeData = {
+  id: number;
+  attributes: HomeAttributes;
+};
+
+export type HomeAttributes = {
+  tags: HomeTagProps[];
+};
+
+export type HomeTagProps = {
+  id: number;
+  name: string;
+  pageId: string;
+  pageType: string;
+  size: "small" | "medium" | "large";
+  isFeatured: boolean;
+  logo: {
+    data: StrapiImageData;
+  };
+};
+export type StrapiImageData = {
   id: number;
   attributes: ImageAttributes;
 };

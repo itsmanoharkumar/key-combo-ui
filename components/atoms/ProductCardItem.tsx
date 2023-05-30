@@ -23,7 +23,6 @@ export default function ProductCardItem({
       .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
       .replace("api/", "");
   }
-  console.log(imageUrl);
   return (
     <div
       className={`flex justify-center flex-col items-center bg-gray-800 text-gray-200 text-sm font-semibold

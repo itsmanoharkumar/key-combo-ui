@@ -12,11 +12,8 @@ export default function KeyCombo({ keyCombo, operatingSystem }: OwnProps) {
     <div className={`font-mono font-semibold flex items-center`}>
       {keyComboArray?.map((key) => {
         return (
-          <div key={key} className={'px-[4px]'}>
-            <KeyboardButton
-                            operatingSystem={operatingSystem}
-                            keyValue={key}
-            />
+          <div key={key} className={"px-[2px]"}>
+            <KeyboardButton operatingSystem={operatingSystem} keyValue={key} />
           </div>
         );
       })}

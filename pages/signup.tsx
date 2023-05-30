@@ -30,7 +30,6 @@ export default function Signup() {
     }
     try {
       const response = await register({ username, email, password });
-      console.log(response);
     } catch (err: any) {
       setErrorMessage(err.message);
     }

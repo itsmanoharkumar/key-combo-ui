@@ -1,8 +1,23 @@
-import { Product } from "@/types/types";
+import HomeTag from "@/components/atoms/HomeTag";
+import { API_ROUTES } from "@/helpers/constants";
+import fetcher from "@/service/service";
+import { HomeData } from "@/types/types";
 import { Box, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
 
-export default function Home({ productList }: { productList: Product[] }) {
+export async function getStaticProps({ params }: any) {
+  const { data: homeData } = await fetcher(API_ROUTES.home + "?populate=*");
+  return {
+    props: {
+      homeData,
+    },
+  };
+}
+
+export default function Home({ homeData }: { homeData: HomeData }) {
+  const tags = homeData?.attributes.tags;
+
   return (
     <>
       <Head>
@@ -15,15 +30,70 @@ export default function Home({ productList }: { productList: Product[] }) {
         <Box
           sx={{
             my: 4,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
           }}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
-            Master Productivity with Keyboard Shortcuts and Command Cheatsheets
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{
+              my: 10,
+              lineHeight: {
+                xs: 1,
+                sm: 1.2,
+                md: 1.5,
+                lg: 1.8,
+                xl: 2,
+              },
+            }}
+          >
+            <span> Master Productivity with </span>
+            <Typography
+              variant="h4"
+              component="span"
+              sx={{
+                fontWeight: 900,
+                fontSize: {
+                  sm: 40,
+                  md: 50,
+                  lg: "7xl",
+                  xl: "8xl",
+                },
+              }}
+              className={
+                "text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600"
+              }
+            >
+              <span> Keyboard Shortcuts </span>
+            </Typography>
+            <span> and </span>
+            <Typography
+              variant="h4"
+              component="span"
+              sx={{
+                fontWeight: 900,
+                fontSize: {
+                  sm: 40,
+                },
+              }}
+              className={
+                "text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600"
+              }
+            >
+              Command Cheatsheets
+            </Typography>
           </Typography>
+          <Box>
+            <Grid container spacing={2} alignItems={"baseline"}>
+              {tags?.map((tag) => {
+                return (
+                  <Grid key={tag.id} xs={"auto"}>
+                    <HomeTag tag={tag} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
         </Box>
       </Container>
     </>

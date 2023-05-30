@@ -159,9 +159,9 @@ export default function SideNavList({ routeList, onNavClick }: any) {
               />
             </ListItemButton>
             {open &&
-              routeList?.map((item: any) => (
+              routeList?.map((item: any, index: number) => (
                 <ListItemButton
-                  key={item.label}
+                  key={index}
                   sx={{ py: 0, minHeight: 32, color: "rgba(255,255,255,.8)" }}
                 >
                   <ListItemText

@@ -4,5 +4,7 @@ export const API_ROUTES = {
   me: "/users/me",
   product: "/product",
   products: "/products",
+  productCategories: "/product-categories",
   shortcutCategories: "/shortcut-categories",
+  home: "/home",
 };

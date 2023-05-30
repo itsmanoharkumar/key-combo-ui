@@ -14,13 +14,15 @@ D
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 I
 service/authentication.ts,0\a\0a15d1b568f2e8c24ca99b741956e9433461980d
-Q
-!components/molecules/KeyCombo.tsx,8\7\874ac267d6c434047109a15535a858b5327213ef
-S
-#components/atoms/KeyboardButton.tsx,1\3\13026c65a2230ad82e0461b687530eb64e6c6fad
 =
 pages/500.tsx,9\d\9da9fe461fc0409faf3ab16c6c37cde53ca7cc90
 X
 (components/molecules/ProductCardList.tsx,b\1\b19b89a48ace6267a9f42a723c558707a14106b6
-T
-$components/atoms/ProductCardItem.tsx,9\8\984ddae77db0204bb9142183f563ef308c26cb7b
+G
+pages/resetPassword.tsx,6\3\6328fea9a1b30d9f0df45d56f1f410a7361fdd89
+B
+layouts/layout.tsx,8\6\86b6aef9cb5eeec78691649e40d344f54973cdf6
+O
+components/molecules/Footer.tsx,5\3\536f3c39d4aa16cba85022ffd99eab6731e78ec0
+G
+images/get-in-touch.svg,6\9\6907248a9eb17b11cd4c145907ac0a5b5d9ba1a1

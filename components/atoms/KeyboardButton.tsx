@@ -1,4 +1,6 @@
 import { OPERATING_SYSTEM } from "@/types/types";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 interface OwnProps {
   operatingSystem: OPERATING_SYSTEM;
@@ -28,37 +30,47 @@ const keyboardButtonMap: Record<string, string> = {
   Insert: "Insert",
 };
 
-export default function KeyboardButton({ operatingSystem, keyValue }: OwnProps) {
+export default function KeyboardButton({
+  operatingSystem,
+  keyValue,
+}: OwnProps) {
   let mappedValue = keyboardButtonMap[keyValue];
   let showButton = false;
   let showText = false;
   let textValue = "";
   let buttonText = "";
-  if(!mappedValue && keyValue?.length === 1) {
+  if (!mappedValue && keyValue?.length === 1) {
     showButton = true;
     buttonText = keyValue;
-    if (['+', ','].includes(keyValue?.trim())) {
+    if (["+", ","].includes(keyValue?.trim())) {
       showButton = false;
       showText = true;
       textValue = keyValue;
     }
-  } else if(!mappedValue) {
+  } else if (!mappedValue) {
     showText = true;
     textValue = keyValue;
-  } else if(mappedValue) {
+  } else if (mappedValue) {
     showButton = true;
     buttonText = mappedValue;
-    if(operatingSystem === OPERATING_SYSTEM.MAC && ["Cmd"].includes(keyValue)) {
-      buttonText = keyValue
+    if (
+      operatingSystem === OPERATING_SYSTEM.MAC &&
+      ["Cmd"].includes(keyValue)
+    ) {
+      buttonText = keyValue;
     }
   }
   return (
     <>
       {showButton && (
-        <div className={`px-1 flex items-center justify-center font-mono text-white bg-gray-600 select-none min-w-[2.5rem] max-w-[110px] h-10 text-lg font-medium border border-gray-300 rounded shadow-sm overflow-ellipsis overflow-hidden`}>{buttonText}</div>
+        <Button color="primary" size="small" variant="outlined">
+          <Typography variant="body1" fontWeight={700}>
+            {buttonText}
+          </Typography>
+        </Button>
       )}
       {showText && (
-        <div className={'font-mono select-none'}>
+        <div className={"font-mono select-none font-extralight mx-2"}>
           {textValue}
         </div>
       )}
