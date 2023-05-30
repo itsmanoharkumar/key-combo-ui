@@ -1,3 +1,4 @@
+import JoinNewsletter from "@/components/organism/JoinNewsletter";
 import { CopyrightOutlined, WindowRounded } from "@mui/icons-material";
 import AndroidSharpIcon from "@mui/icons-material/AndroidSharp";
 import AppleIcon from "@mui/icons-material/Apple";
@@ -8,7 +9,6 @@ import {
   Container,
   Divider,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -39,61 +39,7 @@ export default function Footer({}: Props) {
     <Box sx={{ width: "100%" }}>
       <Container maxWidth={"xl"}>
         <Stack>
-          <Grid
-            container
-            justifyContent={{
-              xs: "center",
-              md: "space-between",
-            }}
-            sx={{
-              my: 4,
-            }}
-            spacing={2}
-          >
-            <Grid sm={6}>
-              <Typography
-                variant="h5"
-                component="div"
-                sx={{
-                  textAlign: {
-                    xs: "center",
-                    md: "left",
-                  },
-                }}
-              >
-                Join our newsletter to keep up to date with us!
-              </Typography>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid xs={12} sm="auto">
-                <TextField
-                  sx={{
-                    width: {
-                      xs: "100%",
-                      md: "auto",
-                    },
-                  }}
-                  type={"email"}
-                  size="small"
-                  label={"Enter your email"}
-                />
-              </Grid>
-              <Grid xs={12} sm="auto">
-                <Button
-                  sx={{
-                    width: {
-                      xs: "100%",
-                      md: "auto",
-                    },
-                  }}
-                  variant="contained"
-                  color="primary"
-                >
-                  Subscribe
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+          <JoinNewsletter />
           <Box>
             <Divider />
           </Box>

@@ -1,6 +1,7 @@
 import Link from "@/components/atoms/Link";
 import Logo from "@/components/atoms/Logo";
 import ThemeToggleSwitch from "@/components/atoms/ThemeToggleSwitch";
+import OperatingSystemSelector from "@/components/molecules/OperatingSystemSelector";
 import SideNavList from "@/components/molecules/SideNavList";
 import { selectAuthState } from "@/store/authSlice";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,7 +18,6 @@ import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import clsx from "clsx";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useSelector } from "react-redux";
@@ -138,15 +138,12 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, mr: 4 }}>
               <Logo />
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {routeList.map((page) => {
                 const href = page.href;
-                const className = clsx({
-                  "text-[blue]": router.pathname === href,
-                });
                 const isActive = router.pathname === href;
                 return (
                   <Button
@@ -171,7 +168,20 @@ function ResponsiveAppBar() {
             <Box
               sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}
             >
-              <ThemeToggleSwitch />
+              <Tooltip title={"Change Operating System"}>
+                <span>
+                  <OperatingSystemSelector />
+                </span>
+              </Tooltip>
+            </Box>
+            <Box
+              sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}
+            >
+              <Tooltip title={"Change Theme"}>
+                <span>
+                  <ThemeToggleSwitch />
+                </span>
+              </Tooltip>
             </Box>
 
             {authState && (

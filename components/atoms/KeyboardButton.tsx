@@ -61,21 +61,21 @@ export default function KeyboardButton({
   return (
     <>
       {/*{showButton && (*/}
-      {/*  <Button color="primary" size="small" variant="outlined">*/}
+      {/*  <Button2 color="primary" size="small" variant="outlined">*/}
       {/*    <Typography variant="body1" fontWeight={700}>*/}
       {/*      {buttonText}*/}
       {/*    </Typography>*/}
-      {/*  </Button>*/}
+      {/*  </Button2>*/}
       {/*)}*/}
       {showButton && (
-        <div className={"font-mono select-none font-extralight mx-2"}>
+        <span className={"font-mono select-none font-extralight mx-2"}>
           {buttonText}
-        </div>
+        </span>
       )}
       {showText && (
-        <div className={"font-mono select-none font-extralight mx-2"}>
+        <span className={"font-mono select-none font-extralight mx-2"}>
           {textValue}
-        </div>
+        </span>
       )}
     </>
   );

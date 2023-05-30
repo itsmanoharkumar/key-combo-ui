@@ -26,6 +26,7 @@ import { StyledEngineProvider } from "@mui/material";
 import { Analytics } from "@vercel/analytics/react";
 import axios from "axios";
 import type { AppProps } from "next/app";
+import { SnackbarProvider } from "notistack";
 import { CookiesProvider } from "react-cookie";
 import { Provider } from "react-redux";
 import { SWRConfig } from "swr";
@@ -52,13 +53,15 @@ export default function App({ Component, ...rest }: AppProps) {
             <CookiesProvider>
               <Provider store={store}>
                 <UserAuthContext>
-                  <Layout>
-                    <Component {...pageProps} />
-                    <Analytics />
-                    {/*<CookieConsent>*/}
-                    {/*  This website uses cookies to enhance the user experience.*/}
-                    {/*</CookieConsent>*/}
-                  </Layout>
+                  <SnackbarProvider maxSnack={3}>
+                    <Layout>
+                      <Component {...pageProps} />
+                      <Analytics />
+                      {/*<CookieConsent>*/}
+                      {/*  This website uses cookies to enhance the user experience.*/}
+                      {/*</CookieConsent>*/}
+                    </Layout>
+                  </SnackbarProvider>
                 </UserAuthContext>
               </Provider>
             </CookiesProvider>

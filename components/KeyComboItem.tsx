@@ -1,8 +1,10 @@
 import KeyCombo from "@/components/molecules/KeyCombo";
 import { OPERATING_SYSTEM, Shortcut } from "@/types/types";
 import { Card, CardContent, useMediaQuery } from "@mui/material";
+import Button from "@mui/material/Button";
 import ListItemText from "@mui/material/ListItemText";
 import { useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 
 interface KeyComboItemProps extends Shortcut {
@@ -24,15 +26,28 @@ export default function KeyComboItem({
         <Grid
           width={"100%"}
           container
-          spacing={1}
+          spacing={2}
           justifyContent={"space-between"}
           flexWrap={"wrap"}
+          sx={{
+            mb: 2,
+          }}
         >
           <Grid xs={12} sm={7}>
-            <ListItemText primary={shortText} secondary={description} />
+            <Typography variant="h6">{shortText}</Typography>
           </Grid>
           <Grid xs={12} sm={5}>
-            <KeyCombo keyCombo={keyCombo} operatingSystem={operatingSystem} />
+            {keyCombo && (
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  textTransform: "none",
+                }}
+              >
+                <Typography variant="h6">{keyCombo}</Typography>
+              </Button>
+            )}
           </Grid>
         </Grid>
       )}

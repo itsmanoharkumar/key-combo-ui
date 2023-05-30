@@ -22,7 +22,5 @@ G
 pages/resetPassword.tsx,6\3\6328fea9a1b30d9f0df45d56f1f410a7361fdd89
 B
 layouts/layout.tsx,8\6\86b6aef9cb5eeec78691649e40d344f54973cdf6
-O
-components/molecules/Footer.tsx,5\3\536f3c39d4aa16cba85022ffd99eab6731e78ec0
 G
 images/get-in-touch.svg,6\9\6907248a9eb17b11cd4c145907ac0a5b5d9ba1a1
