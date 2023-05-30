@@ -1,6 +1,4 @@
 import { OPERATING_SYSTEM } from "@/types/types";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 interface OwnProps {
   operatingSystem: OPERATING_SYSTEM;
@@ -62,12 +60,17 @@ export default function KeyboardButton({
   }
   return (
     <>
+      {/*{showButton && (*/}
+      {/*  <Button color="primary" size="small" variant="outlined">*/}
+      {/*    <Typography variant="body1" fontWeight={700}>*/}
+      {/*      {buttonText}*/}
+      {/*    </Typography>*/}
+      {/*  </Button>*/}
+      {/*)}*/}
       {showButton && (
-        <Button color="primary" size="small" variant="outlined">
-          <Typography variant="body1" fontWeight={700}>
-            {buttonText}
-          </Typography>
-        </Button>
+        <div className={"font-mono select-none font-extralight mx-2"}>
+          {buttonText}
+        </div>
       )}
       {showText && (
         <div className={"font-mono select-none font-extralight mx-2"}>
