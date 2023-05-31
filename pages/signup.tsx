@@ -79,6 +79,7 @@ export default function Signup() {
           </Typography>
           <Stack spacing={2}>
             <TextField
+              autoFocus={true}
               label="Username"
               variant="outlined"
               value={username}

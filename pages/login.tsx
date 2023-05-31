@@ -55,6 +55,7 @@ export default function Login() {
           </Typography>
           <Stack spacing={2}>
             <TextField
+              autoFocus={true}
               label="Email or Username"
               variant="outlined"
               value={usernameOrEmail}
@@ -71,6 +72,7 @@ export default function Login() {
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
+                      disableFocusRipple={true}
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
                       edge="end"
