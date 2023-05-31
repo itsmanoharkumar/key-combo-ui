@@ -1,4 +1,4 @@
-import { ConnectWithUsRequestPayload } from "@/hooks/UseLead";
+import { ConnectWithUsRequestPayload } from "@/hooks/useLead";
 import axios from "axios";
 
 export async function saveLeadApi(payload: ConnectWithUsRequestPayload) {

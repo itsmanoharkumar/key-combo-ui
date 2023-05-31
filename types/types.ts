@@ -60,9 +60,18 @@ export type ProductAttributes = {
   };
 } & Timestamp;
 
+export type SoftwareRequestAttributes = {
+  name: string;
+} & Timestamp;
+
 export type Product = {
   id: number;
   attributes: ProductAttributes;
+};
+
+export type SoftwareRequest = {
+  id: number;
+  attributes: SoftwareRequestAttributes;
 };
 
 export type HomeData = {

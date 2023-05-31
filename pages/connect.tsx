@@ -1,4 +1,4 @@
-import { useLead } from "@/hooks/UseLead";
+import { useLead } from "@/hooks/useLead";
 import GetInTouchImage from "@/images/get-in-touch.svg";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -6,7 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Login() {
+export default function Connect() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

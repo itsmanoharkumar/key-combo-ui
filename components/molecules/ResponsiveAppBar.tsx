@@ -3,6 +3,7 @@ import Logo from "@/components/atoms/Logo";
 import ThemeToggleSwitch from "@/components/atoms/ThemeToggleSwitch";
 import OperatingSystemSelector from "@/components/molecules/OperatingSystemSelector";
 import SideNavList from "@/components/molecules/SideNavList";
+import { NAV_ROUTES, SETTING_LIST } from "@/helpers/constants";
 import { selectAuthState } from "@/store/authSlice";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Stack, SwipeableDrawer } from "@mui/material";
@@ -21,18 +22,6 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
-
-const routeList = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Connect With Us",
-    href: "/connect",
-  },
-];
-const settings = ["Logout"];
 
 function ResponsiveAppBar() {
   const router = useRouter();
@@ -125,7 +114,7 @@ function ResponsiveAppBar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {routeList.map((page) => (
+                {NAV_ROUTES.map((page) => (
                   <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page.title}</Typography>
                   </MenuItem>
@@ -136,7 +125,7 @@ function ResponsiveAppBar() {
               <Logo />
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {routeList.map((page) => {
+              {NAV_ROUTES.map((page) => {
                 const href = page.href;
                 const isActive = router.pathname === href;
                 return (
@@ -201,7 +190,7 @@ function ResponsiveAppBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
+                  {SETTING_LIST.map((setting) => (
                     <MenuItem
                       key={setting}
                       onClick={() => handleCloseUserMenu(setting)}
@@ -236,7 +225,7 @@ function ResponsiveAppBar() {
             width: 250,
           }}
         >
-          <SideNavList routeList={routeList} onNavClick={onNavClickHandler} />
+          <SideNavList routeList={NAV_ROUTES} onNavClick={onNavClickHandler} />
         </Stack>
       </SwipeableDrawer>
     </>
