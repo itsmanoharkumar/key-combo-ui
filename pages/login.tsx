@@ -80,6 +80,11 @@ export default function Login() {
                   </InputAdornment>
                 }
                 label="Password"
+                onKeyDownCapture={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
               />
             </FormControl>
             <Button variant="contained" color="primary" onClick={handleLogin}>

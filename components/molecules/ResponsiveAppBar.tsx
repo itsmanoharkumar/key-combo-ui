@@ -14,12 +14,12 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 import * as React from "react";
+import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
 
 const routeList = [
@@ -32,12 +32,14 @@ const routeList = [
     href: "/connect",
   },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Logout"];
 
 function ResponsiveAppBar() {
   const router = useRouter();
-  const theme = useTheme();
   const authState = useSelector(selectAuthState);
+  const navigate = useRouter();
+
+  const [, , removeCookie] = useCookies(["authToken"]);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -72,7 +74,11 @@ function ResponsiveAppBar() {
     // setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (setting: string) => {
+    if (setting === "Logout") {
+      removeCookie("authToken");
+      navigate.replace("/");
+    }
     setAnchorElUser(null);
   };
 
@@ -196,7 +202,10 @@ function ResponsiveAppBar() {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
                       <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                   ))}
