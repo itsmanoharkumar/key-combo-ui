@@ -1,4 +1,3 @@
-import KeyCombo from "@/components/molecules/KeyCombo";
 import { OPERATING_SYSTEM, Shortcut } from "@/types/types";
 import { Card, CardContent, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -33,10 +32,7 @@ export default function KeyComboItem({
             mb: 2,
           }}
         >
-          <Grid xs={12} sm={7}>
-            <Typography variant="h6">{shortText}</Typography>
-          </Grid>
-          <Grid xs={12} sm={5}>
+          <Grid xs={12} sm={4}>
             {keyCombo && (
               <Button
                 variant="contained"
@@ -45,9 +41,14 @@ export default function KeyComboItem({
                   textTransform: "none",
                 }}
               >
-                <Typography variant="h6">{keyCombo}</Typography>
+                <Typography variant="body1" fontWeight={700}>
+                  {keyCombo}
+                </Typography>
               </Button>
             )}
+          </Grid>
+          <Grid xs={12} sm={8}>
+            <Typography variant="h6">{shortText}</Typography>
           </Grid>
         </Grid>
       )}
@@ -70,10 +71,17 @@ export default function KeyComboItem({
                 <ListItemText primary={shortText} secondary={description} />
               </Grid>
               <Grid xs={12} sm={5}>
-                <KeyCombo
-                  keyCombo={keyCombo}
-                  operatingSystem={operatingSystem}
-                />
+                {keyCombo && (
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      textTransform: "none",
+                    }}
+                  >
+                    <Typography fontWeight={600}>{keyCombo}</Typography>
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </CardContent>
