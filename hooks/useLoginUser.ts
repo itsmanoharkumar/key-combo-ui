@@ -1,19 +1,30 @@
-import { joinEmailListApi } from "@/service/newsletter";
+import { loginApi, LoginRequestPayload } from "@/service/authentication";
 import { useSnackbar } from "notistack";
 
-export function useJoinEmailList() {
+export function useLoginUser() {
   const { enqueueSnackbar } = useSnackbar();
-  async function joinEmailList(email: string) {
+
+  async function loginUser(payload: LoginRequestPayload) {
     try {
-      const response = await joinEmailListApi(email);
-      enqueueSnackbar("Subscribed", { variant: "success" });
-      return response.payload;
+      if (!payload?.identifier) {
+        enqueueSnackbar("Please enter email or username", {
+          variant: "warning",
+        });
+        return;
+      }
+      if (!payload?.password) {
+        enqueueSnackbar("Please enter password", { variant: "warning" });
+        return;
+      }
+      const response = await loginApi(payload);
+      enqueueSnackbar("Success", { variant: "success" });
+      return response;
     } catch (e: any) {
-      let errorMessage = "Failed to subscribe";
+      let errorMessage = "Failed to login";
       if (e.response?.status === 400) {
         console.log(e.response?.data.error.message);
         if (e.response?.data?.error?.message?.includes("must be unique")) {
-          errorMessage = "Already Subscribed";
+          errorMessage = "You already have an account";
         }
         if (e.response?.data?.error?.message?.includes("must be a valid")) {
           errorMessage = "Invalid Email";
@@ -28,7 +39,8 @@ export function useJoinEmailList() {
       }
     }
   }
+
   return {
-    joinEmailList,
+    loginUser,
   };
 }

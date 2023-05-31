@@ -1,19 +1,20 @@
-import { joinEmailListApi } from "@/service/newsletter";
+import { registerApi, RegisterRequestPayload } from "@/service/authentication";
 import { useSnackbar } from "notistack";
 
-export function useJoinEmailList() {
+export function useRegisterUser() {
   const { enqueueSnackbar } = useSnackbar();
-  async function joinEmailList(email: string) {
+
+  async function registerUser(payload: RegisterRequestPayload) {
     try {
-      const response = await joinEmailListApi(email);
-      enqueueSnackbar("Subscribed", { variant: "success" });
-      return response.payload;
+      const response = await registerApi(payload);
+      enqueueSnackbar("Success", { variant: "success" });
+      return response;
     } catch (e: any) {
       let errorMessage = "Failed to subscribe";
       if (e.response?.status === 400) {
         console.log(e.response?.data.error.message);
         if (e.response?.data?.error?.message?.includes("must be unique")) {
-          errorMessage = "Already Subscribed";
+          errorMessage = "You already have an account";
         }
         if (e.response?.data?.error?.message?.includes("must be a valid")) {
           errorMessage = "Invalid Email";
@@ -28,7 +29,8 @@ export function useJoinEmailList() {
       }
     }
   }
+
   return {
-    joinEmailList,
+    registerUser,
   };
 }

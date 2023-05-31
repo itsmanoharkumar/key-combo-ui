@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Unstable_Grid2";
 
 interface Props {}
@@ -58,19 +59,25 @@ export default function Footer({}: Props) {
               </Grid>
               <Grid container alignSelf={"end"} spacing={2}>
                 <Grid>
-                  <Button size="small" variant="text">
-                    Terms of Service
-                  </Button>
+                  <Tooltip title={"Coming soon"}>
+                    <Button size="small" variant="text">
+                      Terms of Service
+                    </Button>
+                  </Tooltip>
                 </Grid>
                 <Grid>
-                  <Button size="small" variant="text">
-                    Privacy Policy
-                  </Button>
+                  <Tooltip title={"Coming soon"}>
+                    <Button size="small" variant="text">
+                      Privacy Policy
+                    </Button>
+                  </Tooltip>
                 </Grid>
                 <Grid>
-                  <Button size="small" variant="text">
-                    Cookies
-                  </Button>
+                  <Tooltip title={"Coming soon"}>
+                    <Button size="small" variant="text">
+                      Cookies
+                    </Button>
+                  </Tooltip>
                 </Grid>
               </Grid>
             </Grid>
@@ -91,13 +98,15 @@ export default function Footer({}: Props) {
                 {platformList.map((platform) => {
                   return (
                     <Grid key={platform.name}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        startIcon={platform.icon}
-                      >
-                        {platform.name}
-                      </Button>
+                      <Tooltip title={"Coming soon"}>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          startIcon={platform.icon}
+                        >
+                          {platform.name}
+                        </Button>
+                      </Tooltip>
                     </Grid>
                   );
                 })}

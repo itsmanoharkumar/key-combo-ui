@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/service/authentication";
+import { getCurrentUserApi } from "@/service/authentication";
 import { setAuthState, setAuthUser } from "@/store/authSlice";
 import axios from "axios";
 import { ReactNode } from "react";
@@ -13,7 +13,7 @@ export default function UserAuthContext({ children }: { children: ReactNode }) {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${cookies.authToken}`;
-    getCurrentUser().then((res) => {
+    getCurrentUserApi().then((res) => {
       dispatch(setAuthState(true));
       dispatch(setAuthUser(res));
     });

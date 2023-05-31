@@ -28,18 +28,6 @@ const routeList = [
     href: "/",
   },
   {
-    title: "Keyboard Shortcuts",
-    href: "/keyboardShortcuts",
-  },
-  {
-    title: "Commands",
-    href: "/commands",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-  {
     title: "Connect With Us",
     href: "/connect",
   },

@@ -1,43 +1,54 @@
 import Link from "@/components/atoms/Link";
+import { useLoginUser } from "@/hooks/useLoginUser";
 import SignInImage from "@/images/sign-in.svg";
-import { login } from "@/service/authentication";
 import { selectAuthState } from "@/store/authSlice";
-import { Button, Container, Stack, TextField, Typography } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Button,
+  Container,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [, setCookie] = useCookies(["authToken"]);
   const navigate = useRouter();
   const authState = useSelector(selectAuthState);
+  const { loginUser } = useLoginUser();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
   if (authState) {
     navigate.replace("/");
   }
 
-  useEffect(() => {
-    setErrorMessage("");
-    if (usernameOrEmail && password) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [usernameOrEmail, password]);
-
   async function handleLogin() {
-    try {
-      const response = await login({ identifier: usernameOrEmail, password });
+    const response = await loginUser({ identifier: usernameOrEmail, password });
+    if (response?.jwt) {
       setCookie("authToken", response.jwt, { path: "/" });
-    } catch (e: any) {
-      setErrorMessage(e.message);
     }
+    // try {
+    //   const response = await loginApi({
+    //     identifier: usernameOrEmail,
+    //     password,
+    //   });
+    //   setCookie("authToken", response.jwt, { path: "/" });
+    // } catch (e: any) {
+    //   setErrorMessage(e.message);
+    // }
   }
 
   return (
@@ -57,13 +68,28 @@ export default function Login() {
               value={usernameOrEmail}
               onChange={(e) => setUsernameOrEmail(e.target.value)}
             />
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <FormControl sx={{ m: 1 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
             <Button variant="contained" color="primary" onClick={handleLogin}>
               Log In
             </Button>

@@ -1,5 +1,5 @@
 import ForgotPasswordImage from "@/images/forgot-password.svg";
-import { login } from "@/service/authentication";
+import { loginApi } from "@/service/authentication";
 import { selectAuthState } from "@/store/authSlice";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -32,7 +32,10 @@ export default function Login() {
 
   async function handleLogin() {
     try {
-      const response = await login({ identifier: usernameOrEmail, password });
+      const response = await loginApi({
+        identifier: usernameOrEmail,
+        password,
+      });
       setCookie("authToken", response.jwt, { path: "/" });
     } catch (e: any) {
       setErrorMessage(e.message);

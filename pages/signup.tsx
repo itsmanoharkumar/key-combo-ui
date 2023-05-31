@@ -1,7 +1,20 @@
 import Link from "@/components/atoms/Link";
+import { useRegisterUser } from "@/hooks/useRegisterUser";
 import RegisterImage from "@/images/register.svg";
-import { register } from "@/service/authentication";
-import { Button, Container, Stack, TextField, Typography } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Button,
+  Container,
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -13,7 +26,10 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [passwordErrorText, setPasswordErrorText] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { registerUser } = useRegisterUser();
   useEffect(() => {
     setErrorMessage("");
     if (email && password && confirmPassword) {
@@ -25,15 +41,17 @@ export default function Signup() {
 
   async function handleSignup() {
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
+      setPasswordErrorText("Passwords do not match");
       return;
     }
-    try {
-      const response = await register({ username, email, password });
-    } catch (err: any) {
-      setErrorMessage(err.message);
-    }
+    const response = await registerUser({ username, email, password });
+    console.log(response);
   }
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
 
   return (
     <Container maxWidth={"xl"}>
@@ -47,7 +65,7 @@ export default function Signup() {
           </Typography>
           <Stack spacing={2}>
             <TextField
-              label="Email"
+              label="Username"
               variant="outlined"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -58,19 +76,57 @@ export default function Signup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField
-              label="Password"
-              variant="outlined"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-              label="Confirm Password"
-              variant="outlined"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <Button variant="contained" color="primary" onClick={handleSignup}>
+            <FormControl sx={{ m: 1 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                type={showConfirmPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowConfirmPassword}
+                      edge="end"
+                    >
+                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Confirm Password"
+              />
+              <FormHelperText>{passwordErrorText} </FormHelperText>
+            </FormControl>
+            <Button
+              disabled={isButtonDisabled}
+              variant="contained"
+              color="primary"
+              onClick={handleSignup}
+            >
               Register
             </Button>
           </Stack>
