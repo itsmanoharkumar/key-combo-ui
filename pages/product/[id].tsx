@@ -1,16 +1,18 @@
 import ShortcutCategoryCard from "@/components/ShortcutCateroryCard";
 import { API_ROUTES } from "@/helpers/constants";
+import useKeyboardShortcut from "@/hooks/useKeyboardShortcut";
 import fetcher from "@/service/service";
 import { fetchShortcutCategoriesForProduct } from "@/service/shortcutCategories";
 import { Product, Shortcut, ShortcutCategory } from "@/types/types";
 import Masonry from "@mui/lab/Masonry";
+import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export async function getStaticProps({ params }: any) {
@@ -55,6 +57,10 @@ export default function ProductPage({
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedShortcutCategoryList, setSearchedShortcutCategoryList] =
     useState<ShortcutCategory[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  useKeyboardShortcut("k", () => {
+    inputRef.current?.focus();
+  });
 
   useEffect(() => {
     let searchedShortcutCategoryListInner = shortcutCategoriesData?.map(
@@ -95,10 +101,6 @@ export default function ProductPage({
     }
   }, [searchTerm, shortcutCategoriesData]);
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
   const productName = productData?.attributes?.name;
   const isShortcutCategoryListEmpty = shortcutCategoriesData?.length === 0;
   return (
@@ -127,6 +129,29 @@ export default function ProductPage({
           >
             {productName}
           </Typography>
+          <Box
+            sx={{
+              mr: 2,
+              mb: 2,
+            }}
+          >
+            <Grid container>
+              <Grid xs={12} sm={6} lg={4}>
+                <TextField
+                  inputRef={inputRef}
+                  label={"Search"}
+                  fullWidth={true}
+                  autoFocus={true}
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                  helperText={"Press CTRL + K"}
+                  onFocus={() => {
+                    console.log("onFocus");
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Box>
           <Box>
             <Masonry spacing={2} columns={{ xs: 1, md: 2 }}>
               {searchedShortcutCategoryList?.map((item: any, index) => {

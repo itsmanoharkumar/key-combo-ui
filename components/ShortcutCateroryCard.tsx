@@ -18,11 +18,11 @@ export default function ShortcutCategoryCard({
 
   return (
     <Card
-      variant="elevation"
       sx={{
-        elevation: {
+        boxShadow: {
           xs: 0,
-          md: 3,
+          sm: 0,
+          md: 1,
         },
       }}
     >
