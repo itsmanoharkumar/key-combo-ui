@@ -1,3 +1,4 @@
+import Link from "@/components/atoms/Link";
 import { API_ROUTES } from "@/helpers/constants";
 import { extractImageData } from "@/helpers/helper";
 import placeholder from "@/images/placeholder.png";
@@ -109,10 +110,27 @@ export default function ProductCategoryPage({ productCategoryData }: OwnProps) {
                     <Image
                       src={src || placeholder}
                       alt={item.attributes.name}
-                      width={70}
-                      height={70}
+                      width={100}
+                      height={100}
                     />
-                    <Button color="inherit">{item.attributes.name}</Button>
+                    <Button
+                      sx={{
+                        mt: 1,
+                        fontWeight: "medium",
+                        textTransform: "none",
+                      }}
+                      color="inherit"
+                      size="large"
+                      fullWidth={true}
+                    >
+                      <Link
+                        className="text-inherit"
+                        href={`/product/${item.id}`}
+                        underline="none"
+                      >
+                        <span>{item.attributes.name}</span>
+                      </Link>
+                    </Button>
                   </Grid>
                 );
               })}
