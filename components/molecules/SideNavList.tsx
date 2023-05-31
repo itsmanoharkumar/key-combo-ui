@@ -1,8 +1,4 @@
 import { KeyboardAlt } from "@mui/icons-material";
-import Dns from "@mui/icons-material/Dns";
-import People from "@mui/icons-material/People";
-import PermMedia from "@mui/icons-material/PermMedia";
-import Public from "@mui/icons-material/Public";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -12,13 +8,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
-
-const data = [
-  { icon: <People />, label: "Keyboard Shortcuts" },
-  { icon: <Dns />, label: "Commands" },
-  { icon: <PermMedia />, label: "About" },
-  { icon: <Public />, label: "Connect With Us" },
-];
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
   "& .MuiListItemButton-root": {
