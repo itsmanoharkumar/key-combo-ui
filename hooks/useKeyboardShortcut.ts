@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-const useKeyboardShortcut = (key: string, callback: () => void) => {
+const useKeyboardShortcut = (key: string, callback: (event: any) => void) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === key) {
         if (event.key === key && event.getModifierState("Control")) {
           event.preventDefault();
-          callback();
+          callback(event);
         }
       }
     };

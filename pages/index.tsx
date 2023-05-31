@@ -1,10 +1,13 @@
 import HomeTag from "@/components/atoms/HomeTag";
+import QuickSearchDialog from "@/components/organism/QuickSearchDialog";
 import { API_ROUTES } from "@/helpers/constants";
+import useKeyboardShortcut from "@/hooks/useKeyboardShortcut";
 import fetcher from "@/service/service";
 import { HomeData } from "@/types/types";
 import { Box, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
+import { useState } from "react";
 
 export async function getStaticProps({ params }: any) {
   const { data: homeData } = await fetcher(API_ROUTES.home + "?populate=*");
@@ -16,8 +19,15 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function Home({ homeData }: { homeData: HomeData }) {
+  const [openQuickSearchDialog, setOpenQuickSearchDialog] = useState(false);
   const tags = homeData?.attributes.tags;
+  useKeyboardShortcut("k", () => {
+    setOpenQuickSearchDialog(true);
+  });
 
+  function onCloseQuickSearchDialog() {
+    setOpenQuickSearchDialog(false);
+  }
   return (
     <>
       <Head>
@@ -96,6 +106,10 @@ export default function Home({ homeData }: { homeData: HomeData }) {
           </Box>
         </Box>
       </Container>
+      <QuickSearchDialog
+        open={openQuickSearchDialog}
+        onClose={onCloseQuickSearchDialog}
+      />
     </>
   );
 }

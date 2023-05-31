@@ -145,9 +145,6 @@ export default function ProductPage({
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
                   helperText={"Press CTRL + K"}
-                  onFocus={() => {
-                    console.log("onFocus");
-                  }}
                 />
               </Grid>
             </Grid>
