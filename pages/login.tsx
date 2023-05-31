@@ -30,6 +30,7 @@ export default function Login() {
   const authState = useSelector(selectAuthState);
   const { loginUser } = useLoginUser();
   const [showPassword, setShowPassword] = useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   if (authState) {
     navigate.replace("/");
@@ -40,15 +41,6 @@ export default function Login() {
     if (response?.jwt) {
       setCookie("authToken", response.jwt, { path: "/" });
     }
-    // try {
-    //   const response = await loginApi({
-    //     identifier: usernameOrEmail,
-    //     password,
-    //   });
-    //   setCookie("authToken", response.jwt, { path: "/" });
-    // } catch (e: any) {
-    //   setErrorMessage(e.message);
-    // }
   }
 
   return (
@@ -96,7 +88,7 @@ export default function Login() {
           </Stack>
           <div className="flex justify-between pt-2">
             <Link href={"/signup"}>
-              <Button variant="text" color="inherit" onClick={handleLogin}>
+              <Button variant="text" color="inherit">
                 Create Account
               </Button>
             </Link>

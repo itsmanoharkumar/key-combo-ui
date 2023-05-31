@@ -1,6 +1,7 @@
 import Link from "@/components/atoms/Link";
 import { useRegisterUser } from "@/hooks/useRegisterUser";
 import RegisterImage from "@/images/register.svg";
+import { selectAuthState } from "@/store/authSlice";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Button,
@@ -17,7 +18,10 @@ import {
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useSelector } from "react-redux";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -29,6 +33,14 @@ export default function Signup() {
   const [passwordErrorText, setPasswordErrorText] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [, setCookie] = useCookies(["authToken"]);
+  const navigate = useRouter();
+  const authState = useSelector(selectAuthState);
+
+  if (authState) {
+    navigate.replace("/");
+  }
+
   const { registerUser } = useRegisterUser();
   useEffect(() => {
     setErrorMessage("");
@@ -45,7 +57,9 @@ export default function Signup() {
       return;
     }
     const response = await registerUser({ username, email, password });
-    console.log(response);
+    if (response?.jwt) {
+      setCookie("authToken", response.jwt, { path: "/" });
+    }
   }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
