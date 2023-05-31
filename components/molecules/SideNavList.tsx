@@ -1,4 +1,7 @@
+import ThemeToggleSwitch from "@/components/atoms/ThemeToggleSwitch";
+import OperatingSystemSelector from "@/components/molecules/OperatingSystemSelector";
 import { KeyboardAlt } from "@mui/icons-material";
+import { ListItem } from "@mui/material";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -58,6 +61,32 @@ export default function SideNavList({ routeList, onNavClick }: any) {
               />
             </ListItemButton>
           ))}
+          <Divider />
+          <List>
+            <ListItem>
+              <ListItemText
+                primary="Change Theme"
+                primaryTypographyProps={{
+                  fontSize: 14,
+                  fontWeight: "medium",
+                }}
+              />
+              <ThemeToggleSwitch />
+            </ListItem>
+            <ListItem>
+              <Divider />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary="Change OS"
+                primaryTypographyProps={{
+                  fontSize: 14,
+                  fontWeight: "medium",
+                }}
+              />
+              <OperatingSystemSelector />
+            </ListItem>
+          </List>
         </FireNav>
       </Paper>
     </Box>

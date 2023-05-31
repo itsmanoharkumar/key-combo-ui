@@ -204,7 +204,7 @@ function ResponsiveAppBar() {
             {!authState && !hideLoginButton && (
               <Box sx={{ flexGrow: 0 }} justifySelf={"end"}>
                 <Link href={"/login"}>
-                  <Button variant="contained" sx={{ mr: 1 }}>
+                  <Button variant="outlined" sx={{ mr: 1 }}>
                     Login
                   </Button>
                 </Link>
