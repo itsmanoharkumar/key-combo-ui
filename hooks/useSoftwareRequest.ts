@@ -47,7 +47,9 @@ export function useSoftwareRequest() {
 
   async function upVoteSoftwareRequest(id: number) {
     try {
-      return await upVoteSoftwareRequestsApi(id);
+      const response = await upVoteSoftwareRequestsApi(id);
+      enqueueSnackbar("Voted Successfully", { variant: "success" });
+      return response;
     } catch (e: any) {
       const error = handleNetworkError(e);
       enqueueSnackbar(error.message, { variant: "error" });

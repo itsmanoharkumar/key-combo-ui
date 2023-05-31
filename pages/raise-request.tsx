@@ -72,11 +72,11 @@ export default function RaiseRequest() {
                   }
                 }}
               />
-              <Tooltip title={"Please login"}>
+              <Tooltip title={!authState && "Please login"}>
                 <span className={"w-full inline-block"}>
                   <Button
                     fullWidth
-                    disabled={authState}
+                    disabled={!authState}
                     variant="contained"
                     color="primary"
                     onClick={handleSend}
@@ -96,13 +96,18 @@ export default function RaiseRequest() {
                 <ListItem
                   key={item.id}
                   secondaryAction={
-                    <Tooltip title={"Please login"}>
-                      <IconButton
-                        aria-label="vote"
-                        onClick={() => onVoteHandler(item.id)}
-                      >
-                        <ThumbUp />
-                      </IconButton>
+                    <Tooltip
+                      title={!authState ? "Please login to vote" : "Vote"}
+                    >
+                      <span>
+                        <IconButton
+                          aria-label="vote"
+                          disabled={!authState}
+                          onClick={() => onVoteHandler(item.id)}
+                        >
+                          <ThumbUp />
+                        </IconButton>
+                      </span>
                     </Tooltip>
                   }
                 >
