@@ -5,6 +5,7 @@ import OperatingSystemSelector from "@/components/molecules/OperatingSystemSelec
 import SideNavList from "@/components/molecules/SideNavList";
 import { NAV_ROUTES, SETTING_LIST } from "@/helpers/constants";
 import { selectAuthState } from "@/store/authSlice";
+import { SearchOutlined } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Stack, SwipeableDrawer } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
@@ -147,6 +148,13 @@ function ResponsiveAppBar() {
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               &nbsp;
+            </Box>
+            <Box
+              sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}
+            >
+              <IconButton aria-label="search" size="large">
+                <SearchOutlined fontSize="inherit" />
+              </IconButton>
             </Box>
             <Box
               sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}

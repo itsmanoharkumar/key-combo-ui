@@ -11,9 +11,9 @@ export const getProduct = async (url: string) => {
   }
 };
 
-export const getAllProductApi = async (query?: string) => {
+export const getAllShortcutApi = async (query?: string) => {
   try {
-    const response = await axios.get(API_ROUTES.products + "?" + query);
+    const response = await axios.get(API_ROUTES.shortcuts + "?" + query);
     return response.data;
   } catch (e) {
     throw handleNetworkError(e);

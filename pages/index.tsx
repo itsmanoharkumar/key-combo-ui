@@ -4,7 +4,9 @@ import { API_ROUTES } from "@/helpers/constants";
 import useKeyboardShortcut from "@/hooks/useKeyboardShortcut";
 import fetcher from "@/service/service";
 import { HomeData } from "@/types/types";
-import { Box, Container, Typography } from "@mui/material";
+import { SearchRounded } from "@mui/icons-material";
+import { Box, Container, Fab, Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
 import { useState } from "react";
@@ -19,6 +21,8 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function Home({ homeData }: { homeData: HomeData }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [openQuickSearchDialog, setOpenQuickSearchDialog] = useState(false);
   const tags = homeData?.attributes.tags;
   useKeyboardShortcut("k", () => {
@@ -105,6 +109,22 @@ export default function Home({ homeData }: { homeData: HomeData }) {
             </Grid>
           </Box>
         </Box>
+        {isMobile && (
+          <Fab
+            color="info"
+            aria-label="add"
+            sx={{
+              position: "fixed",
+              bottom: 16,
+              right: 16,
+            }}
+            onClick={() => {
+              setOpenQuickSearchDialog(true);
+            }}
+          >
+            <SearchRounded />
+          </Fab>
+        )}
       </Container>
       <QuickSearchDialog
         open={openQuickSearchDialog}
