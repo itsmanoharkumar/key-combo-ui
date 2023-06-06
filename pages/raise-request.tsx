@@ -76,7 +76,6 @@ export default function RaiseRequest() {
                 <span className={"w-full inline-block"}>
                   <Button
                     fullWidth
-                    disabled={!authState}
                     variant="contained"
                     color="primary"
                     onClick={handleSend}

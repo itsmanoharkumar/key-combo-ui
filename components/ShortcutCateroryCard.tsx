@@ -34,6 +34,7 @@ export default function ShortcutCategoryCard({
               xs: "h5",
               md: "h4",
             },
+            textTransform: "capitalize",
           }}
           gutterBottom
         >
