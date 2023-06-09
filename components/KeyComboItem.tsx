@@ -35,7 +35,7 @@ export default function KeyComboItem({
           <Grid xs={12} sm={4}>
             {keyCombo && (
               <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 sx={{
                   textTransform: "none",

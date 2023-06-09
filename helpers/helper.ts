@@ -12,7 +12,7 @@ function extractErrorPaths(error: any) {
 
   function extractPathsRecursive(obj: any) {
     if (Array.isArray(obj)) {
-      obj.forEach((item) => {
+      obj?.forEach((item) => {
         if (item.path) {
           if (item.message.includes("is required")) {
             required.push(...item?.path);

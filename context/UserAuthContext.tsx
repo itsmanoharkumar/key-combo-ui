@@ -16,7 +16,11 @@ export default function UserAuthContext({ children }: { children: ReactNode }) {
     getCurrentUserApi().then((res) => {
       dispatch(setAuthState(true));
       dispatch(setAuthUser(res));
-    });
+    }).catch((err) => {
+      console.log(err);
+      // dispatch(setAuthState(false));
+      // dispatch(setAuthUser(null));
+    })
   } else {
     dispatch(setAuthState(false));
     dispatch(setAuthUser(null));
