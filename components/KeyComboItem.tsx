@@ -1,5 +1,5 @@
 import { OPERATING_SYSTEM, Shortcut } from "@/types/types";
-import { Card, CardContent, useMediaQuery } from "@mui/material";
+import { Card, CardContent, Tooltip, useMediaQuery } from "@mui/material";
 import Button from "@mui/material/Button";
 import ListItemText from "@mui/material/ListItemText";
 import { useTheme } from "@mui/material/styles";
@@ -36,21 +36,23 @@ export default function KeyComboItem({
         }}
       >
         <Grid xs={7}>
-          <Typography
-            sx={{
-              typography: {
-                xs: "caption",
-                sm: "body2",
-              },
-            }}
-          >
-            {shortText}
-          </Typography>
+          <Tooltip title={shortText}>
+            <Typography
+              sx={{
+                typography: {
+                  xs: "caption",
+                  sm: "body2",
+                },
+              }}
+            >
+              {shortText}
+            </Typography>
+          </Tooltip>
         </Grid>
         <Grid xs={"auto"}>
           {keyCombo && (
             <Typography
-              className="ml-1 shadow p-1 border whitespace-nowrap border-solid border-gray-600 rounded-md"
+              className="ml-1 shadow p-1 border whitespace-nowrap border-solid border-gray-600 rounded-md backdrop-blur-sm"
               sx={{
                 typography: {
                   xs: "caption",

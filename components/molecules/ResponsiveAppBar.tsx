@@ -3,7 +3,7 @@ import Logo from "@/components/atoms/Logo";
 import ThemeToggleSwitch from "@/components/atoms/ThemeToggleSwitch";
 import OperatingSystemSelector from "@/components/molecules/OperatingSystemSelector";
 import SideNavList from "@/components/molecules/SideNavList";
-import { NAV_ROUTES, SETTING_LIST } from "@/helpers/constants";
+import { SETTING_LIST } from "@/helpers/constants";
 import { selectAuthState } from "@/store/authSlice";
 import { SearchOutlined } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useCookies } from "react-cookie";
 import { useSelector } from "react-redux";
+import { NAV_ROUTES } from "../../constants/navigation";
 
 function ResponsiveAppBar() {
   const router = useRouter();
