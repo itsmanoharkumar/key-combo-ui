@@ -8,17 +8,8 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["keycombostorageaccount.blob.core.windows.net", "localhost"],
+    domains: ["commanstorageaccount.blob.core.windows.net", "localhost"],
   },
-  // async redirects() {
-  //   return [
-  //     {
-        // source: "/product",
-        // destination: "/",
-        // permanent: true,
-      // },
-    // ];
-  // },
 };
 
 module.exports = nextConfig;

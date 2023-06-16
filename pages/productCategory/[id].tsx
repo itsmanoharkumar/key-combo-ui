@@ -55,7 +55,6 @@ interface OwnProps {
 export default function ProductCategoryPage({ productCategoryData }: OwnProps) {
   const router = useRouter();
   const dispatch = useDispatch();
-  console.log(productCategoryData);
   const productCategoryName = productCategoryData?.attributes?.name;
   const productList = productCategoryData?.attributes?.products?.data || [];
   return (
@@ -92,7 +91,6 @@ export default function ProductCategoryPage({ productCategoryData }: OwnProps) {
                   image,
                   IMAGE_SIZE.SMALL
                 );
-
                 return (
                   <Grid
                     sx={{

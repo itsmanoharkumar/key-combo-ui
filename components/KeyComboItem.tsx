@@ -21,72 +21,47 @@ export default function KeyComboItem({
     operatingSystem === OPERATING_SYSTEM.MAC ? macKeyCombo : windowsKeyCombo;
   return (
     <div className="w-full">
-      {!isMobile && (
-        <Grid
-          width={"100%"}
-          container
-          spacing={2}
-          justifyContent={"space-between"}
-          flexWrap={"wrap"}
-          sx={{
-            mb: 2,
-          }}
-        >
-          <Grid xs={12} sm={4}>
-            {keyCombo && (
-              <Button
-                variant="contained"
-                size="large"
-                sx={{
-                  textTransform: "none",
-                }}
-              >
-                <Typography variant="body1" fontWeight={700}>
-                  {keyCombo}
-                </Typography>
-              </Button>
-            )}
-          </Grid>
-          <Grid xs={12} sm={8}>
-            <Typography variant="h6">{shortText}</Typography>
-          </Grid>
+      <Grid
+        width={"100%"}
+        container
+        spacing={{
+          xs: 0,
+          sm: 1,
+        }}
+        justifyContent={"space-between"}
+        alignItems={"baseline"}
+        flexWrap={"nowrap"}
+        sx={{
+          mb: 1,
+        }}
+      >
+        <Grid xs={7}>
+          <Typography
+            sx={{
+              typography: {
+                xs: "caption",
+                sm: "body2",
+              },
+            }}
+          >
+            {shortText}
+          </Typography>
         </Grid>
-      )}
-      {isMobile && (
-        <Card
-          variant="elevation"
-          sx={{
-            my: 1,
-          }}
-        >
-          <CardContent>
-            <Grid
-              width={"100%"}
-              container
-              spacing={1}
-              justifyContent={"space-between"}
-              flexWrap={"wrap"}
+        <Grid xs={"auto"}>
+          {keyCombo && (
+            <Typography
+              className="ml-1 shadow p-1 border whitespace-nowrap border-solid border-gray-600 rounded-md"
+              sx={{
+                typography: {
+                  xs: "caption",
+                },
+              }}
             >
-              <Grid xs={12} sm={7}>
-                <ListItemText primary={shortText} secondary={description} />
-              </Grid>
-              <Grid xs={12} sm={5}>
-                {keyCombo && (
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    sx={{
-                      textTransform: "none",
-                    }}
-                  >
-                    <Typography fontWeight={600}>{keyCombo}</Typography>
-                  </Button>
-                )}
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      )}
+              {keyCombo}
+            </Typography>
+          )}
+        </Grid>
+      </Grid>
     </div>
   );
 }

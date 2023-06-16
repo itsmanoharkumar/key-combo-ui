@@ -24,16 +24,13 @@ export default function ShortcutCategoryCard({
           sm: 0,
           md: 1,
         },
+        overflow: "auto",
       }}
     >
       <CardContent>
         <Typography
           color={"primary"}
           sx={{
-            typography: {
-              xs: "h5",
-              md: "h4",
-            },
             textTransform: "capitalize",
           }}
           gutterBottom

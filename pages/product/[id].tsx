@@ -150,10 +150,10 @@ export default function ProductPage({
             </Grid>
           </Box>
           <Box>
-            <Masonry spacing={2} columns={{ xs: 1, md: 2 }}>
+            <Masonry spacing={2} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
               {searchedShortcutCategoryList?.map((item: any, index) => {
                 return (
-                  <Grid key={item.id} xs={12} md={6}>
+                  <Grid key={item.id} md={4}>
                     <ShortcutCategoryCard
                       id={item.id}
                       attributes={item.attributes}
